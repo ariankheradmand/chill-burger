@@ -1,3 +1,4 @@
+import Buttons from "@/components/Buttons";
 import Hero from "@/components/Hero";
 import Navbar from "@/components/Navbar";
 import Image from "next/image";
@@ -9,6 +10,7 @@ export default function Home() {
     <div className="font-lalezar flex flex-col items-center justify-center gap-6">
      <Navbar /> 
      <Hero />
+     <Buttons />
     </div>
   );
 }
