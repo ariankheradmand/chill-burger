@@ -1,5 +1,11 @@
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Lalezar } from "next/font/google";
 import "./globals.css";
+
+const geistLalezar = Lalezar({
+  variable: "--font-geist-lalezar",
+  weight: "400",
+  subsets: ["arabic"],
+});
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -20,7 +26,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={` ${geistLalezar.variable}  antialiased`}
       >
         {children}
       </body>
