@@ -11,7 +11,7 @@ const Menu_items = [
   ],
   [
     { header: "سالادها" },
-    { colorScheme : "--color-primary-black"},
+    { colorScheme : "--color-Secondary-lightblue"},
     { items: { name: "سالاد فصل", price: "110 ت" } },
     { items: { name: "سالاد سزار", price: "180 ت" } },
     { items: { name: "سالاد یونانی", price: "170 ت" } },

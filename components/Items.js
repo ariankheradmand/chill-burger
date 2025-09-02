@@ -1,8 +1,16 @@
+"use client"
+
 import { Bookmark, Soup } from "lucide-react";
 import React from "react";
 import Menu_items from "@/libs/items";
+import { useGSAP } from "@gsap/react";
+import gsap, { random } from "gsap";
 
 function Items() {
+
+    useGSAP(() => {
+     gsap.fromTo("#items" , {width: "0%"} , {width: random()})
+    })
   return (
     <div className="flex flex-col w-full gap-8">
       {Menu_items.map((category, i) => {
@@ -29,6 +37,7 @@ function Items() {
               {category.slice(2).map((food, j) => (
                 <div
                   key={j}
+                  id="items"
                   className={`flex items-center ${
                     i === 1 || i === 3 ? "text-white" : "text-black"
                   } justify-between  py-4 px-2 text-black shadow-rb rounded-[10px]`}
