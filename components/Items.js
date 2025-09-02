@@ -3,14 +3,9 @@
 import { Bookmark, Soup } from "lucide-react";
 import React from "react";
 import Menu_items from "@/libs/items";
-import { useGSAP } from "@gsap/react";
-import gsap, { random } from "gsap";
 
 function Items() {
 
-    useGSAP(() => {
-     gsap.fromTo("#items" , {width: "0%"} , {width: random()})
-    })
   return (
     <div className="flex flex-col w-full gap-8">
       {Menu_items.map((category, i) => {
