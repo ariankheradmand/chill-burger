@@ -1,5 +1,6 @@
 import Buttons from "@/components/Buttons";
 import Hero from "@/components/Hero";
+import Items from "@/components/Items";
 import Navbar from "@/components/Navbar";
 import Image from "next/image";
 
@@ -11,6 +12,7 @@ export default function Home() {
      <Navbar /> 
      <Hero />
      <Buttons />
+     <Items />
     </div>
   );
 }

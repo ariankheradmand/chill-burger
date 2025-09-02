@@ -45,8 +45,8 @@ function Hero() {
         </div>
       </span>
       <div className="h-36 w-11/12  sm:w-90 flex items-center justify-between ">
-       <div className="bg-primary-red px-3 py-2 rounded-[8px] text-xl shadow-rb rotate-25">همبرگر های خوشمزه</div>
-       <div dir="rtl" className="bg-primary-red px-3 py-2 rounded-[8px] text-xl shadow-rbv2 -rotate-25">چیل کنید کولیزا ...</div>
+       <div className="bg-primary-red px-3 py-2 rounded-[8px] text-xl shadow-rb rotate-16">همبرگر های خوشمزه</div>
+       <div dir="rtl" className="bg-primary-red px-3 py-2 rounded-[8px] text-xl shadow-rbv2 -rotate-16">چیل کنید کولیزا ...</div>
 
       </div>
           </div>

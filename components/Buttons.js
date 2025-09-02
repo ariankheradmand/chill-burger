@@ -13,13 +13,13 @@ function Buttons() {
   }
 
   return (
-    <div className='text-black w-full flex-cc pb-90'>
+    <div className='text-black w-full flex-cc'>
         
       {/* Menu Button */}
-      <span className='fixed w-full flex-rc left-0 bottom-3'>
+      <span className='fixed w-full flex-rc left-0 bottom-3 z-50'>
         <button
           onClick={scrollToItems}
-          className='bg-primary-white px-5 gap-1 rounded-[20px] py-3 flex-rc shadow-rb'
+          className='bg-primary-white px-5 gap-1 rounded-[20px] py-3 flex-rc shadow-rb '
         >
           <Menu />
           <span>منیو</span>
