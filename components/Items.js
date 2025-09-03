@@ -1,4 +1,4 @@
-"use client";
+"use client"
 
 import { Bookmark, Soup } from "lucide-react";
 import React from "react";
@@ -13,6 +13,7 @@ function Items() {
   const width = () => Math.floor(Math.random() * (90 - 66 + 1) + 66);
 
   useGSAP(() => {
+    if (typeof window === "undefined") return;
     gsap.utils.toArray(".item").forEach((el) => {
       gsap.fromTo(
         el,

@@ -44,24 +44,23 @@ function Buttons() {
     });
   });
 
-  
-
-
   const scrollToItems = (id) => {
-    const target = document.getElementById(id);
-    if (target) {
-      target.scrollIntoView({ behavior: "smooth", block: "start" });
+    if (typeof window !== "undefined") {
+      const target = document.getElementById(id);
+      if (target) {
+        target.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
     }
   };
 
   const scrollToItemsSection = () => {
-    const itemsContainer = document.getElementById("items-container");
-    if (itemsContainer) {
-      itemsContainer.scrollIntoView({ behavior: "smooth", block: "start" });
-  }
-}
-
-   
+    if (typeof window !== "undefined") {
+      const itemsContainer = document.getElementById("items-container");
+      if (itemsContainer) {
+        itemsContainer.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }
+  };
 
   return (
     <div id="items-container" className="text-black w-full flex-cc">
@@ -99,7 +98,6 @@ function Buttons() {
 
         <div className="flex items-center justify-between gap-2 w-full">
           <button
-          
             onClick={scrollToItems("appetizer")}
             id="left-b"
             className="w-5/12 bg-primary-white text-black py-3 shadow-rb rounded-[10px] flex-rc gap-2"
@@ -108,7 +106,7 @@ function Buttons() {
             پیش غذا
           </button>
           <button
-          onClick={() => scrollToItems("fried")}
+            onClick={() => scrollToItems("fried")}
             id="right-b"
             className="w-5/12 opacity-0 bg-Secondary-gold py-3 shadow-rb rounded-[10px] flex-rc gap-2"
           >
