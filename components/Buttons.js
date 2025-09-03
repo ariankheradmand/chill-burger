@@ -98,7 +98,7 @@ function Buttons() {
 
         <div className="flex items-center justify-between gap-2 w-full">
           <button
-            onClick={scrollToItems("appetizer")}
+            onClick={() => scrollToItems("appetizer")}
             id="left-b"
             className="w-5/12 bg-primary-white text-black py-3 shadow-rb rounded-[10px] flex-rc gap-2"
           >

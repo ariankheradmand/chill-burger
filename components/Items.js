@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { Bookmark, Soup } from "lucide-react";
 import React from "react";
@@ -17,16 +17,33 @@ function Items() {
     gsap.utils.toArray(".item").forEach((el) => {
       gsap.fromTo(
         el,
-        { width: 0 , opacity : 0},
+        { width: 0, opacity: 0 },
         {
-          opacity : 1,
+          opacity: 1,
           width: () => width() + "%",
           duration: 1.2,
           ease: "elastic.out",
           scrollTrigger: {
             trigger: el,
-            start: "top 95%", 
-            toggleActions: "restart reverse restart reverse", 
+            start: "top 95%",
+            toggleActions: "restart reverse restart reverse",
+          },
+        }
+      );
+    });
+    gsap.utils.toArray(".shine").forEach((el) => {
+      gsap.fromTo(
+        el,
+        { left: -250, top: 0 },
+        {
+          left: 200,
+          top: 20,
+          delay: 1,
+          duration: 1,
+          scrollTrigger: {
+            trigger: el,
+            start: "top 95%",
+            toggleActions: "restart none restart none",
           },
         }
       );
@@ -34,15 +51,15 @@ function Items() {
     gsap.utils.toArray(".textInItems").forEach((el) => {
       gsap.fromTo(
         el,
-        {  opacity : 0},
+        { opacity: 0 },
         {
-          opacity : 1,
+          opacity: 1,
           delay: 0.3,
           ease: "power2.out",
           scrollTrigger: {
             trigger: el,
-            start: "top 95%", 
-            toggleActions: "restart reverse restart reverse", 
+            start: "top 95%",
+            toggleActions: "restart reverse restart reverse",
           },
         }
       );
@@ -82,17 +99,18 @@ function Items() {
             </div>
 
             {/* آیتم‌ها */}
-            <div className="flex flex-col  items-end gap-4 mt-6 w-11/12">
+            <div className="flex flex-col sm:w-90 items-end gap-4 mt-6 w-11/12">
               {category.slice(2).map((food, j) => (
                 <div
                   key={j}
-                  className={`item opacity-0 flex items-center max-h-[56px] ${
+                  className={`item opacity-0 relative overflow-hidden flex items-center max-h-[56px] ${
                     i === 1 || i === 3 ? "text-white" : "text-black"
                   } justify-between py-4 px-2 shadow-rb rounded-[10px]`}
                   style={{
                     backgroundColor: `var(${colorScheme})`,
                   }}
                 >
+                  <span className="shine absolute w-80 h-5 bg-gradient-to-br from-50% from-white -rotate-45" />
                   <div className="flex-rc gap-3 textInItems">
                     <Bookmark />
                     <span dir="rtl">{food.items.price}</span>
