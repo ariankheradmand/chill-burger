@@ -8,7 +8,7 @@ import Image from "next/image";
 
 export default function Home() {
   return (
-    <div className="font-lalezar flex flex-col items-center justify-center gap-6 overflow-hidden">
+    <div className="font-lalezar flex flex-col items-center justify-center gap-6 overflow-hidden mb-26">
      <Navbar /> 
      <Hero />
      <Buttons />
