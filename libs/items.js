@@ -1,6 +1,7 @@
 const Menu_items = [
   [
     { header: "پیش‌غذاها" },
+    { imgsrc: "/HeaderImage/pexels-kei-photo-1420806-2741461 2.jpg"},
     { colorScheme : "--color-primary-white"},
     { items: { name: "سوپ", price: "120 ت" } },
     { items: { name: "سیب‌زمینی سرخ‌کرده", price: "100 ت" } },
@@ -11,6 +12,7 @@ const Menu_items = [
   ],
   [
     { header: "سالادها" },
+    { imgsrc: "/HeaderImage/pexels-cottonbro-3298060 2.jpg"},
     { colorScheme : "--color-Secondary-lightblue"},
     { items: { name: "سالاد فصل", price: "110 ت" } },
     { items: { name: "سالاد سزار", price: "180 ت" } },
@@ -21,6 +23,7 @@ const Menu_items = [
   ],
   [
     { header: "سوخاری‌ها" },
+    { imgsrc: "/HeaderImage/pexels-yesehoon-31682885 2.jpg"},
     { colorScheme: "--color-Secondary-gold" },
     { items: { name: "فیله سوخاری", price: "250 ت" } },
     { items: { name: "بال سوخاری", price: "220 ت" } },
@@ -31,6 +34,7 @@ const Menu_items = [
   ],
   [
     { header: "برگرها" },
+    { imgsrc: "/HeaderImage/pexels-roman-odintsov-5836783 2.jpg"},
     { colorScheme: "--color-primary-red" },
     { items: { name: "چیزبرگر", price: "250 ت" } },
     { items: { name: "دوبل برگر", price: "360 ت" } },

@@ -7,12 +7,11 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { addReminder } from "@/utils/reminderStorage";
+import Image from "next/image";
 
 gsap.registerPlugin(ScrollTrigger);
 
-function Items({setItemChanged}) {
-  
-
+function Items({ setItemChanged }) {
   const width = () => Math.floor(Math.random() * (90 - 66 + 1) + 66);
 
   useGSAP(() => {
@@ -42,38 +41,58 @@ function Items({setItemChanged}) {
       name: food.items.name,
       price: food.items.price,
     });
-    setItemChanged(true)
+    setItemChanged(true);
   };
-
-  
 
   return (
     <div className="flex flex-col w-full gap-8 pb-4">
       {Menu_items.map((category, i) => {
         const header = category[0].header;
-        const colorScheme = category[1].colorScheme;
+        const imgsrc = category[1].imgsrc;
+        const colorScheme = category[2].colorScheme;
 
         return (
           <div key={i} className="w-full flex-cc">
             {/* دسته‌بندی */}
             <div
-              id={i === 0 ? "appetizer" : i === 1 ? "salad" : i === 2 ? "fried" : "burger"}
-              className="flex-rc w-full h-24 bg-Secondary-cream/50 relative"
+              id={
+                i === 0
+                  ? "appetizer"
+                  : i === 1
+                  ? "salad"
+                  : i === 2
+                  ? "fried"
+                  : "burger"
+              }
+              className="flex-rc w-full h-24 relative overflow-hidden"
             >
+              <div className=" absolute w-full h-full flex-cc">
+                <Image width={600} height={600} src={imgsrc} />
+
+              </div>
+              {/* overlay for readability */}
+              <div className="absolute inset-0 bg-gradient-to-b from-70% to-black" />
+
               <button
-                className={`px-4 ${
-                  i === 1 || i === 3 ? "text-white" : "text-black"
-                } py-2 shadow-rb rounded-[10px] -rotate-15 flex-rc gap-2 absolute z-0`}
-                style={{ backgroundColor: `var(${colorScheme})` }}
+                className={`px-4 text-xl text-white py-2 rounded-[10px] translate-y-4 bg-white/1 backdrop-blur-[2px]  flex  items-center justify-center gap-2 relative z-10`}
+                
               >
-                {i === 0 ? <Soup /> : i === 1 ? <Salad /> : i === 2 ? <Drumstick /> : <Hamburger />}
+                {i === 0 ? (
+                  <Soup />
+                ) : i === 1 ? (
+                  <Salad />
+                ) : i === 2 ? (
+                  <Drumstick />
+                ) : (
+                  <Hamburger />
+                )}
                 {header}
               </button>
             </div>
 
             {/* آیتم‌ها */}
             <div className="flex flex-col sm:w-90 items-end gap-4 mt-6 w-11/12">
-              {category.slice(2).map((food, j) => (
+              {category.slice(3).map((food, j) => (
                 <div
                   key={j}
                   className={`item opacity-0 relative overflow-hidden flex items-center max-h-[56px] ${
