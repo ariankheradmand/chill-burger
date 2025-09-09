@@ -1,15 +1,18 @@
 "use client";
 
-import { Bookmark, Soup } from "lucide-react";
-import React from "react";
+import { Drumstick, Hamburger, Salad, Soup, BookmarkPlus } from "lucide-react";
+import React, { useState } from "react";
 import Menu_items from "@/libs/items";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { addReminder } from "@/utils/reminderStorage";
 
 gsap.registerPlugin(ScrollTrigger);
 
-function Items() {
+function Items({setItemChanged}) {
+  
+
   const width = () => Math.floor(Math.random() * (90 - 66 + 1) + 66);
 
   useGSAP(() => {
@@ -31,40 +34,18 @@ function Items() {
         }
       );
     });
-    gsap.utils.toArray(".shine").forEach((el) => {
-      gsap.fromTo(
-        el,
-        { left: -250, top: 0 },
-        {
-          left: 200,
-          top: 20,
-          delay: 1,
-          duration: 1,
-          scrollTrigger: {
-            trigger: el,
-            start: "top 95%",
-            toggleActions: "restart none restart none",
-          },
-        }
-      );
-    });
-    gsap.utils.toArray(".textInItems").forEach((el) => {
-      gsap.fromTo(
-        el,
-        { opacity: 0 },
-        {
-          opacity: 1,
-          delay: 0.3,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: el,
-            start: "top 95%",
-            toggleActions: "restart reverse restart reverse",
-          },
-        }
-      );
-    });
   });
+
+  const handleAdd = (food) => {
+    addReminder({
+      id: food.items.id || food.items.name, // fallback
+      name: food.items.name,
+      price: food.items.price,
+    });
+    setItemChanged(true)
+  };
+
+  
 
   return (
     <div className="flex flex-col w-full gap-8 pb-4">
@@ -76,15 +57,7 @@ function Items() {
           <div key={i} className="w-full flex-cc">
             {/* دسته‌بندی */}
             <div
-              id={
-                i === 0
-                  ? "appetizer"
-                  : i === 1
-                  ? "salad"
-                  : i === 2
-                  ? "fried"
-                  : "burger"
-              }
+              id={i === 0 ? "appetizer" : i === 1 ? "salad" : i === 2 ? "fried" : "burger"}
               className="flex-rc w-full h-24 bg-Secondary-cream/50 relative"
             >
               <button
@@ -93,7 +66,7 @@ function Items() {
                 } py-2 shadow-rb rounded-[10px] -rotate-15 flex-rc gap-2 absolute z-0`}
                 style={{ backgroundColor: `var(${colorScheme})` }}
               >
-                <Soup />
+                {i === 0 ? <Soup /> : i === 1 ? <Salad /> : i === 2 ? <Drumstick /> : <Hamburger />}
                 {header}
               </button>
             </div>
@@ -106,16 +79,22 @@ function Items() {
                   className={`item opacity-0 relative overflow-hidden flex items-center max-h-[56px] ${
                     i === 1 || i === 3 ? "text-white" : "text-black"
                   } justify-between py-4 px-2 shadow-rb rounded-[10px]`}
-                  style={{
-                    backgroundColor: `var(${colorScheme})`,
-                  }}
+                  style={{ backgroundColor: `var(${colorScheme})` }}
                 >
-                  <span className="shine absolute w-80 h-5 bg-gradient-to-br from-50% from-white -rotate-45" />
                   <div className="flex-rc gap-3 textInItems">
-                    <Bookmark />
                     <span dir="rtl">{food.items.price}</span>
                   </div>
-                  <span className="textInItems">{food.items.name}</span>
+
+                  <div className="flex items-center gap-2">
+                    <span className="textInItems">{food.items.name}</span>
+                    <button
+                      onClick={() => handleAdd(food)}
+                      className="p-1 rounded bg-white/30 hover:bg-white/50"
+                      title="Save to reminders"
+                    >
+                      <BookmarkPlus size={18} />
+                    </button>
+                  </div>
                 </div>
               ))}
             </div>

@@ -48,6 +48,11 @@ function Hero() {
 
   return (
     <div className=" flex-cc gap-6 w-full text-[12px]">
+    <div dir="rtl" className="flex items-center justify-start w-11/12 sm:w-90">
+      <div className="text-black text-xl">
+       محبوب ترین برگر ها
+      </div>
+    </div>
       <span
         id="boxes"
         className="w-11/12 h-38 opacity-0 sm:w-90  relative flex-cc bg-black rounded-[20px] shadow-md overflow-hidden "
