@@ -124,7 +124,6 @@ function Buttons({ setItemChanged, itemChanged }) {
   };
 
   useEffect(() => {
-    console.log(getReminders());
     setItems(getReminders());
     setItemsCount(calculateCount(getReminders()));
     setItemChanged(false);

@@ -1,4 +1,5 @@
 "use client";
+import { getReminders } from "@/utils/reminderStorage";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import React, { useEffect, useRef } from "react";
@@ -104,13 +105,15 @@ function Reminder({ reminderOpen }) {
       );
     }
   }, [reminderOpen]);
-
+  console.log(getReminders())
   return (
     <div className="fixed flex-cc h-screen w-screen z-100 top-0 text-white pointer-events-none">
       <div
         ref={containerRef}
         className="w-0 h-0 bg-primary-white reminder-container"
-      ></div>
+      >
+        {}
+      </div>
     </div>
   );
 }

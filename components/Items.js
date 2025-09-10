@@ -1,6 +1,6 @@
 "use client";
 
-import { Drumstick, Hamburger, Salad, Soup, BookmarkPlus } from "lucide-react";
+import { Drumstick, Hamburger, Salad, Soup, BookmarkPlus, Bookmark } from "lucide-react";
 import React, { useState } from "react";
 import Menu_items from "@/libs/items";
 import { useGSAP } from "@gsap/react";
@@ -108,10 +108,10 @@ function Items({ setItemChanged }) {
                     <span className="textInItems">{food.items.name}</span>
                     <button
                       onClick={() => handleAdd(food)}
-                      className="p-1 rounded bg-white/30 hover:bg-white/50"
+                      className="p-1  bg-white/30 hover:bg-white/50 shadow-sm shadow-black/20 border-b-2 border-black"
                       title="Save to reminders"
                     >
-                      <BookmarkPlus size={18} />
+                      <Bookmark size={18} />
                     </button>
                   </div>
                 </div>
