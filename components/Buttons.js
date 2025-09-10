@@ -138,10 +138,10 @@ function Buttons({ setItemChanged, itemChanged }) {
 
   return (
     <div id="items-container" className="text-black w-full flex-cc">
-      <Reminder reminderOpen={reminderOpen} />
+      <Reminder setItemChanged={setItemChanged} reminderOpen={reminderOpen} setReminderOpen={setReminderOpen} />
 
       {/* Menu Button */}
-      <span className="fixed w-fit flex-rc bottom-3 z-100  menub">
+      <span className="fixed w-fit flex-rc bottom-7 z-160  menub">
         <button
           onClick={scrollToItemsSection}
           className="bg-primary-white px-5 gap-3 rounded-[20px] py-3 flex-rc shadow-rb "
@@ -160,13 +160,13 @@ function Buttons({ setItemChanged, itemChanged }) {
               <div className=" w-[10] h-[2px] -rotate-40 bg-primary-black right-arrow"></div>
             </div>
           </div>
-          <span>منیو</span>
+          <span>منو</span>
         </button>
       </span>
       {items?.length === 0 ? (
         ""
       ) : (
-        <span className="fixed w-11/12 flex items-center justify-end  bottom-3 z-50 ">
+        <span className="fixed w-11/12 flex items-center justify-end  bottom-7 z-150 ">
           <button
             onClick={() => setReminderOpen((prev) => !prev)}
             className="bg-primary-white px-2 py-2 rounded-[10px] shadow-rb relative flex-cc scale-0 reminder"
