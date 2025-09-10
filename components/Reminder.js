@@ -151,6 +151,18 @@ function Reminder({ reminderOpen, setItemChanged, setReminderOpen }) {
       }
     }
   };
+  
+  useEffect(() => {
+  if (reminderOpen) {
+    document.body.style.overflow = "hidden";
+  } else {
+    document.body.style.overflow = "";
+  }
+
+  return () => {
+    document.body.style.overflow = "";
+  };
+}, [reminderOpen]);
 
   return (
     <div
@@ -158,9 +170,10 @@ function Reminder({ reminderOpen, setItemChanged, setReminderOpen }) {
         reminderOpen ? "" : "pointer-events-none"
       }`}
     >
+      <div className={` absolute w-full h-full z-50 bg-black/50 transition-all duration-500 ${ reminderOpen ? "opacity-100" : "opacity-0"}`}></div>
       <div
         ref={containerRef}
-        className={`w-0 h-0 p-6 bg-primary-white reminder-container opacity-0 flex flex-col items-center gap-6`}
+        className={`w-0 h-0 p-6 bg-primary-white reminder-container opacity-0 flex flex-col items-center gap-6 z-60`}
       >
         <div className="text-center text-xl text-content">لیست یادآوری</div>
         <div
