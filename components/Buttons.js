@@ -45,13 +45,13 @@ function Buttons({ setItemChanged, itemChanged }) {
 
     gsap.utils.toArray(".left-arrow").forEach((arrow, i) => {
       ScrollTrigger.create({
-        trigger: ".your-container", 
-        start: "top bottom", 
-        end: "bottom top", 
+        trigger: ".your-container",
+        start: "top bottom",
+        end: "bottom top",
         onEnter: () => gsap.to(arrow, { rotate: 0, duration: 0.3 }),
-        onLeave: () => gsap.to(arrow, { rotate: -40, duration: 0.3 }), 
+        onLeave: () => gsap.to(arrow, { rotate: -40, duration: 0.3 }),
         onEnterBack: () => gsap.to(arrow, { rotate: 0, duration: 0.3 }),
-        onLeaveBack: () => gsap.to(arrow, { rotate: 40, duration: 0.3 }), 
+        onLeaveBack: () => gsap.to(arrow, { rotate: 40, duration: 0.3 }),
       });
     });
 
@@ -147,18 +147,18 @@ function Buttons({ setItemChanged, itemChanged }) {
           onClick={scrollToItemsSection}
           className="bg-primary-white px-5 gap-3 rounded-[20px] py-3 flex-rc shadow-rb "
         >
-          <div className="flex-cc gap-1">
+          <div className="flex-cc gap-[3]">
             <div className="flex-rc">
-              <div className="w-3 h-[2px] rotate-40 bg-primary-black left-arrow"></div>
-              <div className="w-3 h-[2px] -rotate-40 bg-primary-black right-arrow"></div>
+              <div className="w-[10] h-[2px] rotate-40 bg-primary-black left-arrow"></div>
+              <div className="w-[10] h-[2px] -rotate-40 bg-primary-black right-arrow"></div>
             </div>
             <div className="flex-rc">
-              <div className="w-3 h-[2px] rotate-40 bg-primary-black left-arrow"></div>
-              <div className="w-3 h-[2px] -rotate-40 bg-primary-black right-arrow"></div>
+              <div className="w-[10] h-[2px] rotate-40 bg-primary-black left-arrow"></div>
+              <div className="w-[10] h-[2px] -rotate-40 bg-primary-black right-arrow"></div>
             </div>
             <div className="flex-rc">
-              <div className="w-3 h-[2px] rotate-40 bg-primary-black left-arrow"></div>
-              <div className="w-3 h-[2px] -rotate-40 bg-primary-black right-arrow"></div>
+              <div className=" w-[10] h-[2px] rotate-40 bg-primary-black left-arrow"></div>
+              <div className=" w-[10] h-[2px] -rotate-40 bg-primary-black right-arrow"></div>
             </div>
           </div>
           <span>منیو</span>
