@@ -169,7 +169,7 @@ function Buttons({ setItemChanged, itemChanged }) {
         <span className="fixed w-11/12 flex items-center justify-end  bottom-7 z-150 ">
           <button
             onClick={() => setReminderOpen((prev) => !prev)}
-            className="bg-primary-white px-2 py-2 rounded-[10px] shadow-rb relative flex-cc scale-0 reminder"
+            className="bg-primary-white size-[48px] px-2 py-2 rounded-[10px] shadow-rb relative flex-cc scale-0 reminder"
           >
             <Bookmark />
             <span className=" absolute -top-5 bg-primary-black text-primary-white w-6 h-6 rounded-full ">

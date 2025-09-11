@@ -61,6 +61,7 @@ function Hero() {
           className=" absolute w-full h-full "
           width={500}
           height={300}
+          alt="burgerPic"
           src="/3.png"
         />
         <span
@@ -85,6 +86,7 @@ function Hero() {
           className=" absolute w-full h-full "
           width={500}
           height={150}
+          alt="burgerPic"
           src="/2.png"
         />
         <span
@@ -110,6 +112,7 @@ function Hero() {
           className=" absolute w-full h-full "
           width={500}
           height={150}
+          alt="burgerPic"
           src="/1.png"
         />
         <span
