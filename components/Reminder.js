@@ -151,18 +151,18 @@ function Reminder({ reminderOpen, setItemChanged, setReminderOpen }) {
       }
     }
   };
-  
-  useEffect(() => {
-  if (reminderOpen) {
-    document.body.style.overflow = "hidden";
-  } else {
-    document.body.style.overflow = "";
-  }
 
-  return () => {
-    document.body.style.overflow = "";
-  };
-}, [reminderOpen]);
+  useEffect(() => {
+    if (reminderOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [reminderOpen]);
 
   return (
     <div
@@ -170,7 +170,11 @@ function Reminder({ reminderOpen, setItemChanged, setReminderOpen }) {
         reminderOpen ? "" : "pointer-events-none"
       }`}
     >
-      <div className={` absolute w-full h-full z-50 bg-black/50 transition-all duration-500 ${ reminderOpen ? "opacity-100" : "opacity-0"}`}></div>
+      <div
+        className={` absolute w-full h-full z-50 bg-black/50 transition-all duration-500 ${
+          reminderOpen ? "opacity-100" : "opacity-0"
+        }`}
+      ></div>
       <div
         ref={containerRef}
         className={`w-0 h-0 p-6 bg-primary-white reminder-container opacity-0 flex flex-col items-center gap-6 z-60`}
@@ -196,17 +200,17 @@ function Reminder({ reminderOpen, setItemChanged, setReminderOpen }) {
               {/* Quantity with + / - */}
               <div className="w-4/12 flex items-center justify-center gap-2">
                 <button
-                  onClick={() => handleRemove(item.id)}
-                  className="p-1 rounded-[10px] bg-primary-black text-primary-white shadow-md"
+                  onClick={() => handleAdd(item)}
+                  className="p-1 rounded-[10px] bg-primary-white text-primary-black focus:bg-black focus:text-white transition-all shadow-md"
                 >
-                  <Minus size={16} />
+                  <Plus size={16} />
                 </button>
                 <span className="underline">{item?.quantity}</span>
                 <button
-                  onClick={() => handleAdd(item)}
-                  className="p-1 rounded-[10px] bg-primary-white text-primary-black shadow-md"
+                  onClick={() => handleRemove(item.id)}
+                  className="p-1 rounded-[10px] bg-primary-white text-primary-black focus:bg-black focus:text-white transition-all shadow-md"
                 >
-                  <Plus size={16} />
+                  <Minus size={16} />
                 </button>
               </div>
 

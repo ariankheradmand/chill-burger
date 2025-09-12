@@ -49,7 +49,7 @@ function Hero() {
   return (
     <div className=" flex-cc gap-6 w-full text-[12px]">
     <div dir="rtl" className="flex items-center justify-start w-11/12 sm:w-90">
-      <div className="text-black text-xl">
+      <div className="text-black text-xl z-10">
        محبوب ترین برگر ها
       </div>
     </div>

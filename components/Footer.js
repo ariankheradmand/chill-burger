@@ -5,7 +5,7 @@ import React from "react";
 function Footer() {
   return (
     <div className="w-full flex-cc bg-black/50 gap-4 relative">
-      <Image alt="CafeImage" width={450} height={750} className=" absolute w-full h-full sm:w-90 " src={"/Footer bg.png"} />
+      <Image alt="CafeImage" width={450} height={750} className=" absolute w-full h-full sm:w-90 " src={"/Footer-bg.png"} />
       <div className="w-11/12 sm:w-90 flex-cc bg-black/50 gap-4 mt-4 p-4 rounded-[20px] z-20">
         <p>آدرس: خیابان ظفر , جنب فروشگاه صادقی , پلاک 23 </p>
         <p>
