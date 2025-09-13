@@ -171,6 +171,7 @@ function Reminder({ reminderOpen, setItemChanged, setReminderOpen }) {
       }`}
     >
       <div
+        onClick={(() => setReminderOpen(false))}
         className={` absolute w-full h-full z-50 bg-black/50 transition-all duration-500 ${
           reminderOpen ? "opacity-100" : "opacity-0"
         }`}
