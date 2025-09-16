@@ -5,13 +5,17 @@ import React from "react";
 function Footer() {
   return (
     <div className="w-full flex-cc bg-black/50 gap-4 relative">
-      <Image
-        alt="CafeImage"
-        width={450}
-        height={750}
-        className=" absolute w-full h-full sm:w-90 "
-        src={"/Footer.png"}
-      />
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="absolute top-0 left-0 w-full h-full object-cover"
+      >
+        <source src="/Footer.mp4" type="video/mp4" />
+        مرورگر شما از ویدیو پشتیبانی نمی‌کند.
+      </video>
+      
       <div className="w-11/12 sm:w-90 flex-cc bg-black/50 gap-4 mt-4 p-4 rounded-[20px] z-20">
         <p>آدرس: خیابان ظفر , جنب فروشگاه صادقی , پلاک 23 </p>
         <p>

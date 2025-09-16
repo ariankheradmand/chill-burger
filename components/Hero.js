@@ -4,11 +4,38 @@ import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import gsap from "gsap";
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
+import Menu_items from "@/libs/items";
+import { addReminder } from "@/utils/reminderStorage";
+import { BookmarkPlus, Bookmark } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
 
-function Hero() {
+function Hero({ setItemChanged }) {
+  // Get burger items from libs (index 3 is burgers)
+  const burgerItems = Menu_items[3].slice(3); // Skip header, imgsrc, colorScheme
+
+  // State for bookmark animation
+  const [activePlus, setActivePlus] = useState({});
+
+  // Map existing images to burger items
+  const heroImages = ["/3.png", "/2.png", "/1.png"];
+
+  const handleAdd = (item, index) => {
+    addReminder({
+      id: item.items.name,
+      name: item.items.name,
+      price: item.items.price,
+    });
+    if (setItemChanged) setItemChanged(true);
+
+    // Toggle plus animation
+    setActivePlus((prev) => ({ ...prev, [index]: true }));
+    setTimeout(() => {
+      setActivePlus((prev) => ({ ...prev, [index]: false }));
+    }, 400);
+  };
+
   useGSAP(() => {
     // animate boxes when scrolled into view
     gsap.utils.toArray("#boxes").forEach((box) => {
@@ -22,7 +49,7 @@ function Hero() {
           scrollTrigger: {
             trigger: box,
             start: "top 95%", // when top of box hits 80% of viewport
-            toggleActions: "restart reverse restart reverse"
+            toggleActions: "play none none none"
           },
         }
       );
@@ -39,7 +66,7 @@ function Hero() {
           scrollTrigger: {
             trigger: badge,
             start: "top 95%",
-            toggleActions: "restart reverse restart reverse"
+            toggleActions: "play none none none"
           },
         }
       );
@@ -48,86 +75,62 @@ function Hero() {
 
   return (
     <div className=" flex-cc gap-6 w-full text-[12px]">
-    <div dir="rtl" className="flex items-center justify-start w-11/12 sm:w-90">
-      <div className="text-black text-xl z-10">
-       محبوب ترین برگر ها
+      <div dir="rtl" className="flex items-center justify-start w-11/12 sm:w-90">
+        <div className="text-black text-xl z-10">
+          محبوب ترین برگر ها
+        </div>
       </div>
-    </div>
-      <span
-        id="boxes"
-        className="w-11/12 h-38 opacity-0 sm:w-90  relative flex-cc bg-black rounded-[20px] shadow-md overflow-hidden "
-      >
-        <Image
-          className=" absolute w-full h-full "
-          width={500}
-          height={300}
-          alt="burgerPic"
-          src="/3.png"
-        />
+      {burgerItems.slice(0, 3).map((item, index) => (
         <span
-          dir="rtl"
-          className=" absolute top-2 bg-black/20 left-3 flex-cc text-[16px] px-1 py-1 rounded-[20px] "
+          key={index}
+          id="boxes"
+          className="w-11/12 h-38 opacity-0 sm:w-90 relative flex-cc bg-black rounded-[20px] shadow-md overflow-hidden"
         >
-          300 ت
-        </span>
-        <div className="absolute flex  items-center justify-between  bottom-2 w-11/12 h-12 bg-black/30 backdrop-blur-[2px] rounded-[20px]">
-          <div className="ml-1 px-3 bg-primary-red/58 rounded-[20px] h-[90%] flex items-center justify-center ">
-            افزودن به یادداشت
+          <Image
+            className="absolute w-full h-full"
+            width={500}
+            height={300}
+            alt={item.items.name}
+            src={heroImages[index]}
+          />
+          <span
+            dir="rtl"
+            className="absolute top-2 bg-black/20 left-3 flex-cc text-[16px] px-1 py-1 rounded-[20px]"
+          >
+            {item.items.price}
+          </span>
+          <div className="absolute flex items-center justify-between bottom-2 w-11/12 h-12 bg-black/30 backdrop-blur-[2px] rounded-[20px]">
+            <button
+              onClick={(e) => {
+                handleAdd(item, index);
+                const boxEl = e.currentTarget.closest("#boxes");
+                if (boxEl) {
+                  gsap.fromTo(
+                    boxEl,
+                    { scale: 1 },
+                    {
+                      scale: 1.05,
+                      duration: 0.15,
+                      ease: "power1.out",
+                      yoyo: true,
+                      repeat: 1,
+                    }
+                  );
+                }
+              }}
+              className="ml-1 px-3 bg-primary-red/58 hover:bg-primary-red/70 rounded-[20px] h-[90%] flex items-center justify-center gap-2 transition-colors"
+            >
+              {activePlus[index] ? (
+                <BookmarkPlus size={16} />
+              ) : (
+                <Bookmark size={16} />
+              )}
+              افزودن به یادداشت
+            </button>
+            <div className="pr-2">{item.items.name}</div>
           </div>
-          <div className=" pr-2">اسموکی برگر</div>
-        </div>
-      </span>
-
-      <span
-        id="boxes"
-        className="w-11/12 h-38 opacity-0  sm:w-90  relative flex-cc bg-black rounded-[20px] shadow-md overflow-hidden"
-      >
-        <Image
-          className=" absolute w-full h-full "
-          width={500}
-          height={150}
-          alt="burgerPic"
-          src="/2.png"
-        />
-        <span
-          dir="rtl"
-          className=" absolute top-2 bg-black/20 left-3 flex-cc text-[16px] px-1 py-1 rounded-[20px] "
-        >
-          350 ت
         </span>
-
-        <div className="absolute flex  items-center justify-between  bottom-2 w-11/12 h-12 bg-black/30 backdrop-blur-[2px] rounded-[20px]">
-          <div className="ml-1 px-3 bg-primary-red/58 rounded-[20px] h-[90%] flex items-center justify-center ">
-            افزودن به یادداشت
-          </div>
-          <div className=" pr-2">چیز برگر</div>
-        </div>
-      </span>
-
-      <span
-        id="boxes"
-        className="w-11/12 opacity-0 sm:w-90 h-38 relative flex-cc bg-black rounded-[20px] shadow-md overflow-hidden"
-      >
-        <Image
-          className=" absolute w-full h-full "
-          width={500}
-          height={150}
-          alt="burgerPic"
-          src="/1.png"
-        />
-        <span
-          dir="rtl"
-          className=" absolute top-2 bg-black/20 left-3 flex-cc text-[16px] px-1 py-1 rounded-[20px] "
-        >
-          360 ت
-        </span>
-        <div className="absolute flex  items-center justify-between  bottom-2 w-11/12 h-12 bg-black/30 backdrop-blur-[2px] rounded-[20px]">
-          <div className="ml-1 px-3 bg-primary-red/58 rounded-[20px] h-[90%] flex items-center justify-center ">
-            افزودن به یادداشت
-          </div>
-          <div className=" pr-2">کوارتر پارتر با پنیر</div>
-        </div>
-      </span>
+      ))}
 
       <div className="h-36 w-11/12  sm:w-90 flex items-center justify-between ">
         <div

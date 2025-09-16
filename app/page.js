@@ -16,7 +16,7 @@ export default function Home() {
     <div className="font-lalezar flex flex-col items-center justify-center gap-6 overflow-hidden ">
      <Image src={'/background-texture.svg'} width={900} height={1200} className=" fixed w-full h-full left-0 bottom-0 object-cover" />
      <Navbar /> 
-     <Hero />
+     <Hero setItemChanged={setItemChanged} />
      <Buttons itemChanged={itemChanged} setItemChanged={setItemChanged} />
      <Items setItemChanged={setItemChanged} />
      <Footer />

@@ -50,7 +50,7 @@ function Reminder({ reminderOpen, setItemChanged, setReminderOpen }) {
           borderRadius: "100%",
         },
         {
-          y: -50,
+          y: -75,
           rotate: 0,
           borderRadius: "10px",
           duration: 0.6,

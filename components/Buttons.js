@@ -78,7 +78,7 @@ function Buttons({ setItemChanged, itemChanged }) {
           scrollTrigger: {
             trigger: box,
             start: "top 95%",
-            toggleActions: "restart reverse restart reverse",
+            toggleActions: "play none none none",
           },
         }
       );
@@ -94,7 +94,7 @@ function Buttons({ setItemChanged, itemChanged }) {
           scrollTrigger: {
             trigger: box,
             start: "top 95%",
-            toggleActions: "restart reverse restart reverse",
+            toggleActions: "play none none none",
           },
         }
       );
