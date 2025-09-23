@@ -1,5 +1,6 @@
 import { Geist, Geist_Mono, Lalezar } from "next/font/google";
 import "./globals.css";
+import LoadingScreen from "@/components/LoadingScreen";
 
 const geistLalezar = Lalezar({
   variable: "--font-geist-lalezar",
@@ -37,6 +38,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="fa" >
       <body className={`${geistLalezar.variable} antialiased`}>
+        <LoadingScreen />
         {children}
       </body>
     </html>
