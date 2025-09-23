@@ -28,7 +28,7 @@ function Buttons({ setItemChanged, itemChanged }) {
     gsap.fromTo(
       ".menub",
       { scale: 1 },
-      { scale: 1.05, repeat: -1, yoyo: true }
+      { scale: 1.05, ease:"sine" , repeat: -1, yoyo: true }
     );
 
     // ArrowUp rotation on scroll
@@ -137,11 +137,13 @@ function Buttons({ setItemChanged, itemChanged }) {
   }, [itemChanged]);
 
   return (
-    <div id="items-container" className="text-black w-full flex-cc">
+    <div id="items-container" className="text-black w-full flex-cc">\
+
+
       <Reminder setItemChanged={setItemChanged} reminderOpen={reminderOpen} setReminderOpen={setReminderOpen} />
 
       {/* Menu Button */}
-      <span className="fixed w-fit flex-rc bottom-7 z-160  menub">
+      <span className="fixed w-fit flex-rc bottom-7 z-160 menub">
         <button
           onClick={scrollToItemsSection}
           className="bg-primary-white px-5 gap-3 rounded-[20px] py-3 flex-rc shadow-rb "
@@ -180,7 +182,7 @@ function Buttons({ setItemChanged, itemChanged }) {
       )}
 
       {/* Items Container */}
-      <div className="flex-cc gap-2 w-11/12 sm:w-90 mt-10 your-container">
+      <div className="flex-cc gap-2 w-11/12 sm:w-90 your-container">
         <div className="flex items-center justify-between gap-2 w-full">
           <button
             onClick={() => scrollToItems("burger")}

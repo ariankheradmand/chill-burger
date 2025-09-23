@@ -49,7 +49,7 @@ function Hero({ setItemChanged }) {
           scrollTrigger: {
             trigger: box,
             start: "top 95%", // when top of box hits 80% of viewport
-            toggleActions: "play none none none"
+            toggleActions: "play none none none",
           },
         }
       );
@@ -66,7 +66,7 @@ function Hero({ setItemChanged }) {
           scrollTrigger: {
             trigger: badge,
             start: "top 95%",
-            toggleActions: "play none none none"
+            toggleActions: "play none none none",
           },
         }
       );
@@ -75,16 +75,37 @@ function Hero({ setItemChanged }) {
 
   return (
     <div className=" flex-cc gap-6 w-full text-[12px]">
-      <div dir="rtl" className="flex items-center justify-start w-11/12 sm:w-90">
-        <div className="text-black text-xl z-10">
-          محبوب ترین برگر ها
+      <div className="h-54 w-11/12  sm:w-90 flex flex-row-reverse items-center justify-between ">
+        <div className="w-[49%] flex-cc gap-4">
+          <div
+            id="badge"
+            className="bg-primary-red opacity-0 px-3 py-2 rounded-[8px] text-xl shadow-rb rotate-16"
+          >
+            همبرگر های خوشمزه
+          </div>
+          <div
+            id="badge"
+            dir="rtl"
+            className="bg-primary-red opacity-0 px-3 py-2 rounded-[8px] text-xl shadow-rb rotate-16"
+          >
+            چیل کنید کولیزا ...
+          </div>
         </div>
+        <div id="badge" className="w-[49%] opacity-0 flex-cc overflow-hidden h-full border border-black z-10 rounded-[20px] shadow-rb">
+          <video muted loop autoPlay className=" object-cover w-full h-full" src={"/burger.mp4"} />
+        </div>
+      </div>
+      <div
+        dir="rtl"
+        className="flex items-center justify-start w-11/12 sm:w-90"
+      >
+        <div className="text-black text-xl z-10">محبوب ترین برگر ها</div>
       </div>
       {burgerItems.slice(0, 3).map((item, index) => (
         <span
           key={index}
           id="boxes"
-          className="w-11/12 h-38 opacity-0 sm:w-90 relative flex-cc bg-black rounded-[20px] shadow-md overflow-hidden"
+          className="w-11/12 h-38 opacity-0 sm:w-90 relative flex-cc bg-black rounded-[20px] shadow-rb overflow-hidden"
         >
           <Image
             className="absolute w-full h-full"
@@ -131,22 +152,6 @@ function Hero({ setItemChanged }) {
           </div>
         </span>
       ))}
-
-      <div className="h-36 w-11/12  sm:w-90 flex items-center justify-between ">
-        <div
-          id="badge"
-          className="bg-primary-red opacity-0 px-3 py-2 rounded-[8px] text-xl shadow-rb rotate-16"
-        >
-          همبرگر های خوشمزه
-        </div>
-        <div
-          id="badge"
-          dir="rtl"
-          className="bg-primary-red opacity-0 px-3 py-2 rounded-[8px] text-xl shadow-rbv2 -rotate-16"
-        >
-          چیل کنید کولیزا ...
-        </div>
-      </div>
     </div>
   );
 }
