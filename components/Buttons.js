@@ -119,6 +119,12 @@ function Buttons({ setItemChanged, itemChanged }) {
     }
   };
 
+  useEffect(() => {
+       setTimeout(() => {
+         scrollToItemsSection()
+       }, 5500);
+  } , [])
+
   const calculateCount = (list) => {
     return list.reduce((sum, item) => sum + (item.quantity || 1), 0);
   };

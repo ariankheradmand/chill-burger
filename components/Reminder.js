@@ -240,6 +240,7 @@ function Reminder({ reminderOpen, setItemChanged, setReminderOpen }) {
             ت
           </div>
         </div>
+        <div onClick={(() => setReminderOpen(false))} className="text-content absolute bottom-6 right-6 text-lg underline underline-offset-8">بستن</div>
       </div>
     </div>
   );

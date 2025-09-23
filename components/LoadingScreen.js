@@ -92,14 +92,16 @@ export default function LoadingScreen() {
       <div className="w-6 h-6 bg-primary-dark rounded-sm innerCube"></div>
     </div>
 
-    {/* Cube 3 - Light Blue + Dark */}
-    <div className="w-12 h-12 bg-Secondary-lightblue rounded-md thirdCube border-2 border-primary-dark flex items-center justify-center">
-      <div className="w-6 h-6 bg-primary-dark rounded-sm innerCube"></div>
-    </div>
+    
 
-    {/* Cube 4 - Dark + Gold */}
+    {/* Cube 3 - Dark + Gold */}
     <div className="w-12 h-12 bg-primary-dark rounded-md forthCube border-2 border-Secondary-gold flex items-center justify-center">
       <div className="w-6 h-6 bg-Secondary-gold rounded-sm innerCube"></div>
+    </div>
+
+    {/* Cube 4 - Light Blue + Dark */}
+    <div className="w-12 h-12 bg-Secondary-lightblue rounded-md thirdCube border-2 border-primary-dark flex items-center justify-center">
+      <div className="w-6 h-6 bg-primary-dark rounded-sm innerCube"></div>
     </div>
   </div>
 </div>
