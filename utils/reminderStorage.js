@@ -33,3 +33,8 @@ export function removeReminder(id) {
 
   localStorage.setItem(STORAGE_KEY, JSON.stringify(reminders));
 }
+
+export function clearReminders() {
+  if (typeof window === "undefined") return;
+  localStorage.removeItem(STORAGE_KEY);
+}

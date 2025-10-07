@@ -28,7 +28,7 @@ function Buttons({ setItemChanged, itemChanged }) {
     gsap.fromTo(
       ".menub",
       { scale: 1 },
-      { scale: 1.05, ease:"sine" , repeat: -1, yoyo: true }
+      { scale: 1.05, ease: "sine", repeat: -1, yoyo: true }
     );
 
     // ArrowUp rotation on scroll
@@ -119,11 +119,6 @@ function Buttons({ setItemChanged, itemChanged }) {
     }
   };
 
-  useEffect(() => {
-       setTimeout(() => {
-         scrollToItemsSection()
-       }, 5500);
-  } , [])
 
   const calculateCount = (list) => {
     return list.reduce((sum, item) => sum + (item.quantity || 1), 0);
@@ -143,11 +138,12 @@ function Buttons({ setItemChanged, itemChanged }) {
   }, [itemChanged]);
 
   return (
-    <div id="items-container" className="text-black w-full flex-cc">\
-
-
-      <Reminder setItemChanged={setItemChanged} reminderOpen={reminderOpen} setReminderOpen={setReminderOpen} />
-
+    <div id="items-container" className="text-black w-full flex-cc">
+      <Reminder
+        setItemChanged={setItemChanged}
+        reminderOpen={reminderOpen}
+        setReminderOpen={setReminderOpen}
+      />
       {/* Menu Button */}
       <span className="fixed w-fit flex-rc bottom-7 z-160 menub">
         <button
@@ -186,7 +182,6 @@ function Buttons({ setItemChanged, itemChanged }) {
           </button>
         </span>
       )}
-
       {/* Items Container */}
       <div className="flex-cc gap-2 w-11/12 sm:w-90 your-container">
         <div className="flex items-center justify-between gap-2 w-full">

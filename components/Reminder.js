@@ -3,11 +3,12 @@ import {
   getReminders,
   addReminder,
   removeReminder,
+  clearReminders,
 } from "@/utils/reminderStorage";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import React, { useEffect, useRef, useState } from "react";
-import { Plus, Minus } from "lucide-react";
+import { Plus, Minus, Trash } from "lucide-react";
 
 function Reminder({ reminderOpen, setItemChanged, setReminderOpen }) {
   const containerRef = useRef(null);
@@ -171,7 +172,7 @@ function Reminder({ reminderOpen, setItemChanged, setReminderOpen }) {
       }`}
     >
       <div
-        onClick={(() => setReminderOpen(false))}
+        onClick={() => setReminderOpen(false)}
         className={` absolute w-full h-full z-50 bg-black/50 transition-all duration-500 ${
           reminderOpen ? "opacity-100" : "opacity-0"
         }`}
@@ -240,7 +241,24 @@ function Reminder({ reminderOpen, setItemChanged, setReminderOpen }) {
             ت
           </div>
         </div>
-        <div onClick={(() => setReminderOpen(false))} className="text-content absolute bottom-6 right-6 text-lg underline underline-offset-8">بستن</div>
+        <div
+          onClick={() => setReminderOpen(false)}
+          className="text-content absolute bottom-6 right-6 text-lg underline underline-offset-8"
+        >
+          بستن
+        </div>
+        <div
+          onClick={() => {
+            clearReminders();
+            setData([]); 
+            setItemChanged(true);
+            setReminderOpen(false); 
+          }}
+          className="flex gap-2 border text-content px-2 py-1 rounded-[10px] items-center justify-center"
+        >
+          <Trash size={18} />
+          <span>پاک کردن همه </span>
+        </div>
       </div>
     </div>
   );
