@@ -79,28 +79,8 @@ function Hero({ setItemChanged }) {
         <div className="text-black text-xl z-10">
           محبوب ترین برگر ها
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         </div>
       </div>
-
-
-
-
-
-
       {burgerItems.slice(0, 3).map((item, index) => (
         <span
           key={index}

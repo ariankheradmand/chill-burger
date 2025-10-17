@@ -7,8 +7,9 @@ import {
   Soup,
   BookmarkPlus,
   Bookmark,
+  BadgeQuestionMark,
 } from "lucide-react";
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Menu_items from "@/libs/items";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
@@ -19,10 +20,10 @@ import Image from "next/image";
 gsap.registerPlugin(ScrollTrigger);
 
 function Items({ setItemChanged }) {
-  const width = () => Math.floor(Math.random() * (90 - 66 + 1) + 66);
-
-  // keep track of which item shows the "plus"
+  const width = () => Math.floor(Math.random() * (95 - 80 + 1) + 80);
   const [activePlus, setActivePlus] = useState({});
+  const [openItem, setOpenItem] = useState(null); // برای نگه داشتن آیتم باز شده
+  const containerRef = useRef(null);
 
   useGSAP(() => {
     if (typeof window === "undefined") return;
@@ -45,6 +46,18 @@ function Items({ setItemChanged }) {
     });
   });
 
+  // بستن وقتی بیرون از آیتم کلیک بشه
+  useEffect(() => {
+    const handleOutsideClick = (e) => {
+      if (!containerRef.current) return;
+      if (!containerRef.current.contains(e.target)) {
+        setOpenItem(null);
+      }
+    };
+    document.addEventListener("click", handleOutsideClick);
+    return () => document.removeEventListener("click", handleOutsideClick);
+  }, []);
+
   const handleAdd = (food, key) => {
     addReminder({
       id: food.items.id || food.items.name,
@@ -52,18 +65,15 @@ function Items({ setItemChanged }) {
       price: food.items.price,
     });
     setItemChanged(true);
-
-    // toggle plus only for this item
     setActivePlus((prev) => ({ ...prev, [key]: true }));
-
-    // reset after animation
-    setTimeout(() => {
-      setActivePlus((prev) => ({ ...prev, [key]: false }));
-    }, 400);
+    setTimeout(() => setActivePlus((prev) => ({ ...prev, [key]: false })), 400);
   };
 
   return (
-    <div className="flex flex-col items-center justify-center w-full gap-8 pb-4">
+    <div
+      ref={containerRef}
+      className="flex flex-col items-center justify-center w-full gap-8 pb-4"
+    >
       {Menu_items.map((category, i) => {
         const header = category[0].header;
         const imgsrc = category[1].imgsrc;
@@ -72,6 +82,7 @@ function Items({ setItemChanged }) {
         return (
           <div key={i} className="w-full flex-cc sm:w-90">
             {/* دسته‌بندی */}
+
             <div
               id={
                 i === 0
@@ -82,19 +93,22 @@ function Items({ setItemChanged }) {
                   ? "fried"
                   : "burger"
               }
-              className="flex-rc w-full  h-24 relative overflow-hidden"
+              className="flex-rc w-full h-24 relative overflow-hidden"
             >
               <div className="absolute w-full h-full flex-cc">
-                <Image
-                  alt={header}
-                  width={600}
-                  height={600}
-                  src={imgsrc}
-                />
+                <Image alt={header} width={600} height={600} src={imgsrc} />
               </div>
               <div className="absolute inset-0 bg-gradient-to-b from-70% to-black" />
               <button className="px-4 text-xl text-white py-2 rounded-[10px] translate-y-4 bg-white/10 backdrop-blur-[2px] flex items-center justify-center gap-2 relative z-10">
-                {i === 0 ? <Soup /> : i === 1 ? <Salad /> : i === 2 ? <Drumstick /> : <Hamburger />}
+                {i === 0 ? (
+                  <Soup />
+                ) : i === 1 ? (
+                  <Salad />
+                ) : i === 2 ? (
+                  <Drumstick />
+                ) : (
+                  <Hamburger />
+                )}
                 {header}
               </button>
             </div>
@@ -102,23 +116,76 @@ function Items({ setItemChanged }) {
             {/* آیتم‌ها */}
             <div className="flex flex-col items-end gap-4 mt-6 w-11/12">
               {category.slice(3).map((food, j) => {
-                const key = `${i}-${j}`; // unique key for state
+                const key = `${i}-${j}`;
+
                 return (
                   <div
                     key={j}
-                    className={`item opacity-0 relative overflow-hidden flex items-center max-h-[56px] ${
-                      i === 1 || i === 3 ? "text-white" : "text-black"
+                    className={`item opacity-0 relative flex items-center max-h-[56px] ${
+                      i === 3 ? "text-white" : "text-black"
                     } justify-between py-4 px-2 shadow-rb rounded-[10px]`}
                     style={{ backgroundColor: `var(${colorScheme})` }}
+                    onClick={(e) => {
+                      e.stopPropagation(); // جلوگیری از بستن موقع کلیک روی خودش
+                      setOpenItem((prev) => (prev === key ? null : key));
+                    }}
                   >
+                    {openItem === key && (
+                      <div
+                        className="absolute top-[90%] w-3/4 right-1/8 shadow-rb rounded-b-[10px] z-50"
+                        style={{
+                          backgroundColor: `var(${colorScheme})`,
+                        }}
+                      >
+                        <div className="flex items-end text-sm justify-center flex-col w-full h-full p-2 gap-2 ">
+                          <div
+                            dir="rtl"
+                            className=" flex flex-col gap-1 items-start justify-center "
+                          >
+                            <span className="underline underline-offset-6 text-base">
+                              مزه
+                            </span>
+                            <span>{food.items.taste} </span>
+                          </div>
+                        </div>
+                        <div className=" flex items-end text-sm justify-center flex-col w-full h-full p-2 gap-2 ">
+                          <div
+                            dir="rtl"
+                            className="flex flex-col gap-1 items-start justify-center "
+                          >
+                            <span className="underline underline-offset-6 text-base">
+                              ترکیبات
+                            </span>
+                            <span>{food.items.ingredients.join("، ")}</span>
+                          </div>
+                        </div>
+                        <div className="flex  items-end text-sm justify-center flex-col w-full h-full p-2 gap-2 text-primary-red">
+                          <div
+                            dir="rtl"
+                            className={` flex flex-col w-full gap-1 items-start justify-center bg-primary-white shadow-md p-1 rounded-[10px]`}
+                          >
+                            <span className="underline underline-offset-6 text-base">
+                              حساسیت‌ها
+                            </span>
+                            <span>{food.items.allergyWarning}</span>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+
                     <div className="flex-rc gap-3 textInItems">
                       <span dir="rtl">{food.items.price}</span>
                     </div>
 
                     <div className="flex items-center gap-2">
+                      <BadgeQuestionMark
+                        style={{ backgroundColor: `var(${colorScheme})` }}
+                      />
+
                       <span className="textInItems">{food.items.name}</span>
                       <button
                         onClick={(e) => {
+                          e.stopPropagation();
                           handleAdd(food, key);
                           const itemEl = e.currentTarget.closest(".item");
                           if (itemEl) {

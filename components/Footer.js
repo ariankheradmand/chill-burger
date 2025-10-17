@@ -4,7 +4,7 @@ import React from "react";
 
 function Footer() {
   return (
-    <div className="w-full flex-cc bg-black/50 gap-4 relative">
+    <div className="w-full flex-cc bg-black/50 gap-10 relative pb-20">
       <video
         autoPlay
         loop
