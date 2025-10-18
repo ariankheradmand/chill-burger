@@ -13,8 +13,8 @@ import { useState } from "react";
 export default function Home() {
   const [itemChanged , setItemChanged] = useState(false);
   return (
-    <div className="font-lalezar flex flex-col items-center justify-center gap-6 overflow-hidden ">
-     <Image src={'/background-texture.svg'} width={500} height={500} className=" fixed w-full h-full left-0 -bottom-0 object-cover" />
+    <div className="font-lalezar flex flex-col items-center justify-center gap-6 overflow-hidden relative">
+     <Image src={'/background-texture.svg'} width={500} height={500} className=" fixed w-full h-full left-0 bottom-0  object-cover" />
      <Navbar /> 
      <Hero setItemChanged={setItemChanged} />
      <Buttons itemChanged={itemChanged} setItemChanged={setItemChanged} />

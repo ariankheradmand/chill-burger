@@ -85,10 +85,10 @@ function Hero({ setItemChanged }) {
         <span
           key={index}
           id="boxes"
-          className="w-11/12 h-38  opacity-0 sm:w-90 relative flex-cc bg-black rounded-[20px] shadow-md overflow-hidden"
+          className="w-11/12 h-38  opacity-0 sm:w-90 relative  flex-cc bg-black rounded-[20px] shadow-md overflow-hidden"
         >
           <Image
-            className="absolute w-full h-full"
+            className="absolute w-full h-full "
             width={500}
             height={300}
             alt={item.items.name}
@@ -96,11 +96,11 @@ function Hero({ setItemChanged }) {
           />
           <span
             dir="rtl"
-            className="absolute top-2 bg-white/20 px-3 left-3 flex-cc text-[16px] py-1 rounded-[20px]"
+            className="absolute top-2 bg-white/40 px-3 left-3 flex-cc text-[16px] py-1 rounded-[20px]"
           >
             {item.items.price}
           </span>
-          <div className="absolute text-sm flex items-center justify-between bottom-2 w-11/12 h-12 text-white bg-white/20 backdrop-blur-[2px] rounded-[20px]">
+          <div className="absolute text-sm flex items-center justify-between bottom-2 w-11/12 h-12 text-white bg-white/40 backdrop-blur-[3px] rounded-[20px]">
             <button
               onClick={(e) => {
                 handleAdd(item, index);
@@ -129,7 +129,7 @@ function Hero({ setItemChanged }) {
               )}
               افزودن به یادداشت
             </button>
-            <div className="pr-2">{item.items.name}</div>
+            <div className="pr-2 text-primary-black">{item.items.name}</div>
           </div>
         </span>
       ))}
@@ -137,14 +137,14 @@ function Hero({ setItemChanged }) {
       <div className="h-36 w-11/12  sm:w-90 flex items-center justify-between ">
         <div
           id="badge"
-          className="bg-primary-red opacity-0 px-3 py-2 rounded-[8px] text-xl shadow-rb rotate-16"
+          className="bg-primary-red inner-shadow opacity-0 px-3 py-2 rounded-[8px] text-lg inner-shadow  rotate-16"
         >
           همبرگر های خوشمزه
         </div>
         <div
           id="badge"
           dir="rtl"
-          className="bg-primary-red opacity-0 px-3 py-2 rounded-[8px] text-xl shadow-rbv2 -rotate-16"
+          className="bg-primary-red inner-shadow opacity-0 px-3 py-2 rounded-[8px] text-lg inner-shadow  -rotate-16"
         >
           چیل کنید کولیزا ...
         </div>

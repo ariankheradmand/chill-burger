@@ -8,6 +8,8 @@ import {
   BookmarkPlus,
   Bookmark,
   BadgeQuestionMark,
+  CirclePlus,
+  Check,
 } from "lucide-react";
 import React, { useState, useEffect, useRef } from "react";
 import Menu_items from "@/libs/items";
@@ -189,13 +191,13 @@ function Items({ setItemChanged }) {
                           handleAdd(food, key);
                           
                         }}
-                        className="p-1 bg-white/30 hover:bg-white/50 shadow-sm shadow-black/20 border-b-2 border-black"
+                        className="p-1 bg-white/30 hover:bg-white/50 shadow-md shadow-black/40  rounded-[20px]"
                         title="Save to reminders"
                       >
                         {activePlus[key] ? (
-                          <BookmarkPlus size={18} />
+                          <Check  size={18}/>
                         ) : (
-                          <Bookmark size={18} />
+                          <CirclePlus  size={18}/>
                         )}
                       </button>
                     </div>
