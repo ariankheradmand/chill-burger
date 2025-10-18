@@ -1,14 +1,14 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="500" height="500" viewBox="0 0 500 500" fill="none">
+<svg xmlns="http://www.w3.org/2000/svg" width="500" height="500" viewBox="0 0 2000 2000" fill="none">
 
   <g filter="url(#filter0_n_149_393)">
 
-    <rect width="500" height="500" fill="#fff6ecdb"/>
+    <rect width="2000" height="2000" fill="#fff6ecdb"/>
 
   </g>
 
   <defs>
 
-    <filter id="filter0_n_149_393" x="0" y="0" width="500" height="500" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+    <filter id="filter0_n_149_393" x="0" y="0" width="2000" height="2000" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
 
       <feFlood flood-opacity="0" result="BackgroundImageFix"/>
 

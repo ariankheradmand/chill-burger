@@ -184,18 +184,18 @@ function Reminder({ reminderOpen, setItemChanged, setReminderOpen }) {
         <div className="text-center text-xl text-content">لیست یادآوری</div>
         <div
           dir="rtl"
-          className="flex items-center justify-between w-full border-b-2 text-content"
+          className="flex items-center justify-between w-full border-b-2 text-content "
         >
           <div className="w-5/12">آیتم</div>
           <div className="w-4/12 text-center">تعداد</div>
           <div className="w-3/12 text-end">بها</div>
         </div>
 
-        <div dir="rtl" className="flex flex-col w-full gap-3 text-content">
+        <div  className="flex flex-col w-full gap-3 text-content max-h-[400px] overflow-y-auto pb-1 [direction:ltr] [&>*]:[direction:rtl] min-h-[400px]:pr-2 min-h-[400px]:mr-[-8px]">
           {data?.map((item, index) => (
             <div
               key={index}
-              className="flex items-center justify-between w-full"
+              className="flex items-center justify-between w-full "
             >
               <div className="w-5/12">{item?.name}</div>
 

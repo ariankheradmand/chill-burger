@@ -48,7 +48,6 @@ function Items({ setItemChanged }) {
     });
   });
 
-  // بستن وقتی بیرون از آیتم کلیک بشه
   useEffect(() => {
     const handleOutsideClick = (e) => {
       if (!containerRef.current) return;
@@ -189,15 +188,36 @@ function Items({ setItemChanged }) {
                         onClick={(e) => {
                           e.stopPropagation();
                           handleAdd(food, key);
-                          
                         }}
-                        className="p-1 bg-white/30 hover:bg-white/50 shadow-md shadow-black/40  rounded-[20px]"
+                        className="p-1 bg-white/30 relative flex-rc hover:bg-white/50 shadow-md shadow-black/40  rounded-[20px]"
                         title="Save to reminders"
                       >
                         {activePlus[key] ? (
-                          <Check  size={18}/>
+                          <Check size={18} />
                         ) : (
-                          <CirclePlus  size={18}/>
+                          <CirclePlus size={18} />
+                        )}
+
+                        {activePlus[key] ? (
+                          <div
+                            ref={(el) => {
+                              if (el) {
+                                gsap.set(el, { y: -5, opacity: 1 });
+
+                                gsap.to(el, {
+                                  y: -30,
+                                  opacity: 0,
+                                  duration: 1,
+                                  ease: "sine",
+                                });
+                              }
+                            }}
+                            className="absolute text-lg font-thin    text-white select-none "
+                          >
+                            +
+                          </div>
+                        ) : (
+                          ""
                         )}
                       </button>
                     </div>
