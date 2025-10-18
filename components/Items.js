@@ -212,7 +212,7 @@ function Items({ setItemChanged }) {
                                 });
                               }
                             }}
-                            className="absolute text-lg font-thin    text-white select-none "
+                            className={`absolute text-lg font-thin     select-none ${ i === 3 ? "text-white" : "text-black"}`}
                           >
                             +
                           </div>

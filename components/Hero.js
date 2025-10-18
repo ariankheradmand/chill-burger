@@ -134,7 +134,7 @@ function Hero({ setItemChanged }) {
         </span>
       ))}
 
-      <div className="h-36 w-11/12  sm:w-90 flex items-center justify-between ">
+      <div className="h-24 w-11/12  sm:w-90 flex items-center justify-between ">
         <div
           id="badge"
           className="bg-primary-red inner-shadow opacity-0 px-3 py-2 rounded-[8px] text-lg inner-shadow  rotate-16"
