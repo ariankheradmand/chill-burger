@@ -187,20 +187,7 @@ function Items({ setItemChanged }) {
                         onClick={(e) => {
                           e.stopPropagation();
                           handleAdd(food, key);
-                          const itemEl = e.currentTarget.closest(".item");
-                          if (itemEl) {
-                            gsap.fromTo(
-                              itemEl,
-                              { scale: 1 },
-                              {
-                                scale: 1.05,
-                                duration: 0.15,
-                                ease: "power1.out",
-                                yoyo: true,
-                                repeat: 1,
-                              }
-                            );
-                          }
+                          
                         }}
                         className="p-1 bg-white/30 hover:bg-white/50 shadow-sm shadow-black/20 border-b-2 border-black"
                         title="Save to reminders"
