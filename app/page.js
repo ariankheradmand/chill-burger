@@ -14,7 +14,7 @@ export default function Home() {
   const [itemChanged , setItemChanged] = useState(false);
   return (
     <div className="font-lalezar flex flex-col items-center justify-center gap-6 overflow-hidden relative">
-     <Image src={'/background-texture.svg'} width={2000} height={2000} className=" fixed w-screen h-screen left-0 bottom-px  object-cover" />
+     <Image src={'/background-texture.svg'} width={2000} height={2000} className="opacity-70 fixed w-screen h-screen left-0 bottom-px  object-cover" />
      <Navbar /> 
      <Hero setItemChanged={setItemChanged} />
      <Buttons itemChanged={itemChanged} setItemChanged={setItemChanged} />

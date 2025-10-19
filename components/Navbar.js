@@ -11,8 +11,11 @@ function Navbar() {
     gsap.to('.logo' , {opacity: 1})
   })
   return (
-          <Image className="opacity-0 logo z-10" alt="chill burger logo"  width={1920} height={1080} src="/Frame 3.svg" />
+<div className="h-24 w-full bg-primary-red z-10 flex-rc relative">
+ <Image src={"MainLogo.svg"} className="z-10" height={100} width={100} /> 
+     <Image src={'/background-texture.svg'} width={2000} height={2000} className="opacity-10 absolute w-screen h-screen left-0 bottom-0  object-cover" />
 
+</div>
   );
 }
 

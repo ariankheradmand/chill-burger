@@ -133,26 +133,58 @@ function Items({ setItemChanged }) {
                   >
                     {openItem === key && (
                       <div
-                        className="absolute top-[90%] w-3/4 right-1/8 shadow-rb rounded-b-[10px] z-50"
+                        className="absolute top-[90%] w-3/4 right-1/8 shadow-rb rounded-b-[10px] z-50 overflow-hidden"
                         style={{
                           backgroundColor: `var(${colorScheme})`,
                         }}
+                        ref={(el) => {
+                          if (el) {
+                            const spans = el.querySelectorAll("span");
+
+                            // Hide all child text before animation
+                            gsap.set(spans, { opacity: 0 });
+
+                            // Animate container first
+                            gsap.fromTo(
+                              el,
+                              { y: -50, height: 0, opacity: 0 },
+                              {
+                                y: 0,
+                                height: "auto",
+                                opacity: 1,
+                                duration: 0.4,
+                                ease: "sine",
+                                onComplete: () => {
+                                  // Then fade in texts with stagger
+                                  gsap.to(spans, {
+                                    opacity: 1,
+                                    y: 0,
+                                    duration: 0.4,
+                                    stagger: 0.07,
+                                    ease: "sine",
+                                  });
+                                },
+                              }
+                            );
+                          }
+                        }}
                       >
-                        <div className="flex items-end text-sm justify-center flex-col w-full h-full p-2 gap-2 ">
+                        <div className="flex items-end text-sm justify-center flex-col w-full h-full p-2 gap-2">
                           <div
                             dir="rtl"
-                            className=" flex flex-col gap-1 items-start justify-center "
+                            className="flex flex-col gap-1 items-start justify-center"
                           >
                             <span className="underline underline-offset-6 text-base">
                               مزه
                             </span>
-                            <span>{food.items.taste} </span>
+                            <span>{food.items.taste}</span>
                           </div>
                         </div>
-                        <div className=" flex items-end text-sm justify-center flex-col w-full h-full p-2 gap-2 ">
+
+                        <div className="flex items-end text-sm justify-center flex-col w-full h-full p-2 gap-2">
                           <div
                             dir="rtl"
-                            className="flex flex-col gap-1 items-start justify-center "
+                            className="flex flex-col gap-1 items-start justify-center"
                           >
                             <span className="underline underline-offset-6 text-base">
                               ترکیبات
@@ -160,10 +192,11 @@ function Items({ setItemChanged }) {
                             <span>{food.items.ingredients.join("، ")}</span>
                           </div>
                         </div>
-                        <div className="flex  items-end text-sm justify-center flex-col w-full h-full p-2 gap-2 text-primary-red">
+
+                        <div className="flex items-end text-sm justify-center flex-col w-full h-full p-2 gap-2 text-primary-red">
                           <div
                             dir="rtl"
-                            className={` flex flex-col w-full gap-1 items-start justify-center bg-primary-white shadow-md p-1 rounded-[10px]`}
+                            className="flex flex-col w-full gap-1 items-start justify-center bg-primary-white shadow-md p-1 rounded-[10px]"
                           >
                             <span className="underline underline-offset-6 text-base">
                               حساسیت‌ها
@@ -212,7 +245,9 @@ function Items({ setItemChanged }) {
                                 });
                               }
                             }}
-                            className={`absolute text-lg font-thin     select-none ${ i === 3 ? "text-white" : "text-black"}`}
+                            className={`absolute text-lg font-thin     select-none ${
+                              i === 3 ? "text-white" : "text-black"
+                            }`}
                           >
                             +
                           </div>
