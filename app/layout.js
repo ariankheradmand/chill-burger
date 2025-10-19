@@ -20,14 +20,17 @@ const geistMono = Geist_Mono({
 
 export const metadata = {
   title: "چیل برگر کرمانشاه | بهترین فست فود و همبرگر کرمانشاه",
-  description: "چیل برگر کرمانشاه - بهترین و خوشمزه‌ترین همبرگر، پیتزا، سیب زمینی و فست فود کرمانشاه. سفارش آنلاین با تحویل سریع.",
-  keywords: "چیل برگر, فست فود کرمانشاه, همبرگر کرمانشاه, پیتزا کرمانشاه, سفارش آنلاین",
+  description:
+    "چیل برگر کرمانشاه - بهترین و خوشمزه‌ترین همبرگر، پیتزا، سیب زمینی و فست فود کرمانشاه. سفارش آنلاین با تحویل سریع.",
+  keywords:
+    "چیل برگر, فست فود کرمانشاه, همبرگر کرمانشاه, پیتزا کرمانشاه, سفارش آنلاین",
   openGraph: {
     title: "چیل برگر کرمانشاه | بهترین فست فود و همبرگر",
-    description: "بهترین و خوشمزه‌ترین همبرگر و فست فود کرمانشاه در چیل برگر. سفارش آنلاین با کیفیت عالی.",
-    url: "https://yoursite.com",
+    description:
+      "بهترین و خوشمزه‌ترین همبرگر و فست فود کرمانشاه در چیل برگر. سفارش آنلاین با کیفیت عالی.",
+    url: "https://www.chillburger.info/",
     siteName: "چیل برگر کرمانشاه",
-    images: [{ url: "https://yoursite.com/og-image.jpg" }],
+    images: [{ url: "https://www.chillburger.info/public/MainLogo.svg" }],
     locale: "fa_IR",
     type: "website",
   },
@@ -36,7 +39,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="fa" >
+    <html lang="fa">
       <body className={`${geistLalezar.variable} antialiased`}>
         <LoadingScreen />
         {children}
