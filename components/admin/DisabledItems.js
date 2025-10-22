@@ -133,7 +133,7 @@ function DisabledItems() {
           <div className="bg-white p-6 rounded-[10px] w-11/12 max-w-md" onClick={(e) => e.stopPropagation()}>
             <h3 className="text-xl mb-4 text-right text-black">آیا مطمئن هستید؟</h3>
             <p className="text-right mb-6 text-gray-700">
-              آیتم "{selectedItem.name}" فعال شود؟
+              آیتم {selectedItem.name} فعال شود؟
             </p>
             <div className="flex gap-3">
               <button 
