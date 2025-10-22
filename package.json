@@ -4,16 +4,24 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "next build --turbopack",
+    "build": "prisma generate && next build --turbopack",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "postinstall": "prisma generate",
+    "db:migrate": "prisma migrate deploy",
+    "db:seed": "prisma db seed && node prisma/seed-admin.js"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
+    "@prisma/client": "^6.17.1",
+    "bcryptjs": "^3.0.2",
     "gsap": "^3.13.0",
     "lucide-react": "^0.542.0",
     "next": "15.5.2",
+    "next-auth": "^4.24.11",
     "next-pwa": "^5.6.0",
+    "pg": "^8.16.3",
+    "prisma": "^6.17.1",
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "workbox-webpack-plugin": "^7.3.0"
@@ -24,5 +32,8 @@
     "eslint": "^9",
     "eslint-config-next": "15.5.2",
     "tailwindcss": "^4"
+  },
+  "prisma": {
+    "seed": "node prisma/seed.js"
   }
 }

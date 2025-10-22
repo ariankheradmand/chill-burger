@@ -1,3 +1,6 @@
+const { PrismaClient } = require('@prisma/client');
+const prisma = new PrismaClient();
+
 const Menu_items = [
   [
     { header: "پیش‌غذاها" },
@@ -261,4 +264,58 @@ const Menu_items = [
   ],
 ];
 
-export default Menu_items;
+async function main() {
+  console.log('Starting seed...');
+
+  // Clear existing data
+  await prisma.item.deleteMany();
+  await prisma.category.deleteMany();
+
+  // Seed categories and items
+  for (let i = 0; i < Menu_items.length; i++) {
+    const category = Menu_items[i];
+    const header = category[0].header;
+    const imgsrc = category[1].imgsrc;
+    const colorScheme = category[2].colorScheme;
+
+    const createdCategory = await prisma.category.create({
+      data: {
+        header,
+        imgsrc,
+        colorScheme,
+        order: i,
+      },
+    });
+
+    console.log(`Created category: ${header}`);
+
+    // Create items for this category
+    for (let j = 3; j < category.length; j++) {
+      const item = category[j].items;
+      await prisma.item.create({
+        data: {
+          name: item.name,
+          price: item.price,
+          taste: item.taste,
+          ingredients: JSON.stringify(item.ingredients),
+          allergyWarning: item.allergyWarning,
+          disabled: item.disabled,
+          categoryId: createdCategory.id,
+        },
+      });
+    }
+
+    console.log(`Created ${category.length - 3} items for ${header}`);
+  }
+
+  console.log('Seed completed!');
+}
+
+main()
+  .catch((e) => {
+    console.error(e);
+    process.exit(1);
+  })
+  .finally(async () => {
+    await prisma.$disconnect();
+  });

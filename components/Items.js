@@ -5,14 +5,11 @@ import {
   Hamburger,
   Salad,
   Soup,
-  BookmarkPlus,
-  Bookmark,
   BadgeQuestionMark,
   CirclePlus,
   Check,
 } from "lucide-react";
 import React, { useState, useEffect, useRef } from "react";
-import Menu_items from "@/libs/items";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -26,9 +23,27 @@ function Items({ setItemChanged }) {
   const [activePlus, setActivePlus] = useState({});
   const [openItem, setOpenItem] = useState(null); // برای نگه داشتن آیتم باز شده
   const containerRef = useRef(null);
+  const [menuItems, setMenuItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  // Fetch items from API
+  useEffect(() => {
+    async function fetchItems() {
+      try {
+        const response = await fetch('/api/items');
+        const data = await response.json();
+        setMenuItems(data);
+      } catch (error) {
+        console.error('Error fetching items:', error);
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchItems();
+  }, []);
 
   useGSAP(() => {
-    if (typeof window === "undefined") return;
+    if (typeof window === "undefined" || menuItems.length === 0) return;
     gsap.utils.toArray(".item").forEach((el) => {
       gsap.fromTo(
         el,
@@ -46,7 +61,7 @@ function Items({ setItemChanged }) {
         }
       );
     });
-  });
+  }, [menuItems]);
 
   useEffect(() => {
     const handleOutsideClick = (e) => {
@@ -70,12 +85,20 @@ function Items({ setItemChanged }) {
     setTimeout(() => setActivePlus((prev) => ({ ...prev, [key]: false })), 400);
   };
 
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center w-full h-64">
+        <div className="text-xl">در حال بارگذاری...</div>
+      </div>
+    );
+  }
+
   return (
     <div
       ref={containerRef}
       className="flex flex-col items-center justify-center w-full gap-8 pb-4"
     >
-      {Menu_items.map((category, i) => {
+      {menuItems.map((category, i) => {
         const header = category[0].header;
         const imgsrc = category[1].imgsrc;
         const colorScheme = category[2].colorScheme;
@@ -89,10 +112,10 @@ function Items({ setItemChanged }) {
                 i === 0
                   ? "appetizer"
                   : i === 1
-                  ? "salad"
-                  : i === 2
-                  ? "fried"
-                  : "burger"
+                    ? "salad"
+                    : i === 2
+                      ? "fried"
+                      : "burger"
               }
               className="flex-rc w-full h-24 relative overflow-hidden"
             >
@@ -122,13 +145,15 @@ function Items({ setItemChanged }) {
                 return (
                   <div
                     key={j}
-                    className={`item opacity-0 relative flex items-center max-h-[56px] ${
-                      i === 3 ? "text-white" : "text-black"
-                    } justify-between py-4 px-2 shadow-rb rounded-[10px]`}
+                    className={`item opacity-0 relative flex items-center max-h-[56px] ${i === 3 ? "text-white" : "text-black"
+                      } justify-between py-4 px-2 shadow-rb rounded-[10px] ${food.items.disabled ? 'opacity-70' : ''
+                      }`}
                     style={{ backgroundColor: `var(${colorScheme})` }}
                     onClick={(e) => {
                       e.stopPropagation(); // جلوگیری از بستن موقع کلیک روی خودش
-                      setOpenItem((prev) => (prev === key ? null : key));
+                      if (!food.items.disabled) {
+                        setOpenItem((prev) => (prev === key ? null : key));
+                      }
                     }}
                   >
                     {openItem === key && (
@@ -208,22 +233,35 @@ function Items({ setItemChanged }) {
                     )}
 
                     <div className="flex-rc gap-3 textInItems">
-                      <span dir="rtl">{food.items.price}</span>
+                      <span dir="rtl" className={food.items.disabled ? 'opacity-60' : ''}>
+                        {food.items.price}
+                      </span>
                     </div>
 
                     <div className="flex items-center gap-2">
                       <BadgeQuestionMark
-                        style={{ backgroundColor: `var(${colorScheme})` }}
+                        color={food.items.disabled ? "gray" : `black`}
                       />
 
-                      <span className="textInItems">{food.items.name}</span>
+                      <div className="flex items-center gap-2">
+                        <span className={`textInItems ${food.items.disabled ? ' opacity-60' : ''}`}>
+                          {food.items.name}
+                        </span>
+                        {food.items.disabled && (
+                          <span className="text-xs opacity-70">(ناموجود)</span>
+                        )}
+                      </div>
                       <button
                         onClick={(e) => {
                           e.stopPropagation();
                           handleAdd(food, key);
                         }}
-                        className="p-1 bg-white/30 relative flex-rc hover:bg-white/50 shadow-md shadow-black/40  rounded-[20px]"
-                        title="Save to reminders"
+                        disabled={food.items.disabled}
+                        className={`p-1 bg-white/30 relative flex-rc shadow-md shadow-black/40 rounded-[20px] ${food.items.disabled
+                            ? 'opacity-50 cursor-not-allowed'
+                            : 'hover:bg-white/50'
+                          }`}
+                        title={food.items.disabled ? "ناموجود" : "Save to reminders"}
                       >
                         {activePlus[key] ? (
                           <Check size={18} />
@@ -245,9 +283,8 @@ function Items({ setItemChanged }) {
                                 });
                               }
                             }}
-                            className={`absolute text-lg font-thin     select-none ${
-                              i === 3 ? "text-white" : "text-black"
-                            }`}
+                            className={`absolute text-lg font-thin     select-none ${i === 3 ? "text-white" : "text-black"
+                              }`}
                           >
                             +
                           </div>
