@@ -10,6 +10,8 @@ import {
   BadgeQuestionMark,
   CirclePlus,
   Check,
+  CupSoda,
+  Utensils,
 } from "lucide-react";
 import React, { useState, useEffect, useRef } from "react";
 import Menu_items from "@/libs/items";
@@ -138,7 +140,7 @@ function Items({ setItemChanged }) {
               </div>
               <div className="absolute inset-0 bg-gradient-to-b from-50% to-black" />
               <button className="px-4 text-xl text-white py-2 rounded-[10px] translate-y-6  flex items-center justify-center gap-2 relative z-10">
-                {i === 0 ? <Soup /> : i === 1 ? <Salad /> : <Hamburger />}
+                {i === 0 ? <Hamburger /> : i === 1 ? <Soup /> : i === 2 ? <Salad /> : i === 3 ? <CupSoda /> : <Utensils />}
                 {header}
               </button>
             </div>

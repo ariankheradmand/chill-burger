@@ -9,6 +9,8 @@ import {
   Menu,
   Salad,
   Soup,
+  CupSoda,
+  Utensils,
 } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -247,7 +249,7 @@ function Buttons({ setItemChanged, itemChanged }) {
             id="left-b"
             className="w-[45%] text-lg bg-primary-black text-white py-3 shadow-rb rounded-[10px] flex-rc gap-2"
           >
-            <Soup />
+            <CupSoda />
             نوشیدنی ها
           </button>
           <button
@@ -255,7 +257,7 @@ function Buttons({ setItemChanged, itemChanged }) {
             id="right-b"
             className="w-[45%] text-lg opacity-0 bg-Secondary-gold text-black py-3 shadow-rb rounded-[10px] flex-rc gap-2"
           >
-            <Salad />
+            <Utensils />
             تاپینگ ها
           </button>
         </div>
