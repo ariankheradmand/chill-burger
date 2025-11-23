@@ -268,7 +268,7 @@ function Items({ setItemChanged }) {
                             e.stopPropagation();
                             handleAdd(food, key);
                           }}
-                          className="p-1 bg-white/30 relative flex-rc hover:bg-white/50 shadow-md shadow-black/40  rounded-[20px]"
+                          className="p-1 textInItems bg-white/30 relative flex-rc hover:bg-white/50 shadow-md shadow-black/40  rounded-[20px]"
                           title="Save to reminders"
                         >
                           {activePlus[key] ? (

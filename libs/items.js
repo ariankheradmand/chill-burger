@@ -136,7 +136,7 @@ const Menu_items = [
           "پنیر فتا",
         ],
         allergyWarning: "حاوی لبنیات",
-        picture: "/ItemsImage/reyhan.png"
+        picture: "/ItemsImage/grecce.png"
       },
     },
 
@@ -147,7 +147,7 @@ const Menu_items = [
         taste: "ترکیب لیمویی، تازه و سبک",
         ingredients: ["بیبی اسفناج", "درسینگ لیمو", "پیاز قرمز", "پنیر فتا"],
         allergyWarning: "حاوی لبنیات", 
-        picture: "/ItemsImage/grecce.png"
+        picture: "/ItemsImage/reyhan.png"
       },
     },
   ],
