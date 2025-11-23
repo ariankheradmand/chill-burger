@@ -146,8 +146,92 @@ const Menu_items = [
         price: "295 ت",
         taste: "ترکیب لیمویی، تازه و سبک",
         ingredients: ["بیبی اسفناج", "درسینگ لیمو", "پیاز قرمز", "پنیر فتا"],
-        allergyWarning: "حاوی لبنیات", 
+        allergyWarning: "حاوی لبنیات",
         picture: "/ItemsImage/reyhan.png"
+      },
+    },
+  ],
+  [
+    { header: "نوشیدنی ها" },
+    { imgsrc: "/HeaderImage/pexels-ron-lach-8879622 1.png" },
+    { colorScheme: "--color-primary-black" },
+
+    {
+      items: {
+        name: "آب معدنی",
+        price: "15 ت",
+        taste: "خنک و طبیعی",
+        ingredients: ["آب معدنی طبیعی"],
+        allergyWarning: "",
+      },
+    },
+    {
+      items: {
+        name: "کوکا - کوکا زیرو",
+        price: "55 ت",
+        taste: "گازدار و خنک",
+        ingredients: ["نوشابه کولا"],
+        allergyWarning: "",
+      },
+    },
+    {
+      items: {
+        name: "نوشابه دستساز",
+        price: "80 ت",
+        taste: "طعم نوستالژیک",
+        ingredients: ["عصاره طبیعی", "آب گازدار"],
+        allergyWarning: "",
+      },
+    },
+  ],
+  [
+    { header: "تاپینگ ها" },
+    { imgsrc: "/HeaderImage/set-of-five-dip-sauces-shot-from 2.png" },
+    { colorScheme: "--color-Secondary-gold" },
+
+    {
+      items: {
+        name: "سس گارلیک",
+        price: "20 ت",
+        taste: "سیر و سبزیجات",
+        ingredients: ["سیر", "مایونز", "سبزیجات معطر"],
+        allergyWarning: "حاوی تخم مرغ",
+      },
+    },
+    {
+      items: {
+        name: "سس ترافل",
+        price: "20 ت",
+        taste: "عطر ترافل",
+        ingredients: ["قارچ ترافل", "سس مخصوص"],
+        allergyWarning: "حاوی تخم مرغ",
+      },
+    },
+    {
+      items: {
+        name: "سس چیل",
+        price: "20 ت",
+        taste: "تند و آتشین",
+        ingredients: ["فلفل چیلی", "ادویه مخصوص"],
+        allergyWarning: "",
+      },
+    },
+    {
+      items: {
+        name: "سس اسموکی",
+        price: "20 ت",
+        taste: "دودی و باربیکیو",
+        ingredients: ["عصاره دود", "گوجه فرنگی"],
+        allergyWarning: "",
+      },
+    },
+    {
+      items: {
+        name: "سس هات",
+        price: "20 ت",
+        taste: "بسیار تند",
+        ingredients: ["فلفل قرمز", "سیر"],
+        allergyWarning: "",
       },
     },
   ],

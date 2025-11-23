@@ -125,7 +125,11 @@ function Items({ setItemChanged }) {
                     ? "appetizer"
                     : i === 2
                       ? "salad"
-                      : "default value"
+                      : i === 3
+                        ? "drink"
+                        : i === 4
+                          ? "topping"
+                          : "default value"
               }
               className="flex-rc w-full h-24 relative overflow-hidden"
             >
@@ -147,7 +151,7 @@ function Items({ setItemChanged }) {
                 return (
                   <div
                     key={j}
-                    className={`item opacity-0 relative flex ${food.items.picture ? "min-h-[238px] max-h-[238px]" : "min-h-[40px] max-h-[56px]"} flex-col items-center  ${i === 0 ? "text-white" : "text-black"
+                    className={`item opacity-0 relative flex ${food.items.picture ? "min-h-[238px] max-h-[238px]" : "min-h-[40px] max-h-[56px]"} flex-col items-center  ${i === 0 || i === 3 ? "text-white" : "text-black"
                       } justify-between py-4  shadow-rb rounded-[10px]`}
                     style={{ backgroundColor: `var(${colorScheme})` }}
                     onClick={(e) => {
@@ -218,7 +222,7 @@ function Items({ setItemChanged }) {
                           </div>
                         </div>
 
-                        <div className="flex items-end text-sm justify-center flex-col w-full h-full p-2 gap-2 text-primary-red">
+                        {food.items.allergyWarning ? <div className="flex items-end text-sm justify-center flex-col w-full h-full p-2 gap-2 text-primary-red">
                           <div
                             dir="rtl"
                             className="flex flex-col w-full gap-1 items-start justify-center bg-primary-white shadow-md p-1 rounded-[10px]"
@@ -228,7 +232,8 @@ function Items({ setItemChanged }) {
                             </span>
                             <span>{food.items.allergyWarning}</span>
                           </div>
-                        </div>
+                        </div> : ""}
+
                       </div>
                     )}
 
@@ -244,7 +249,7 @@ function Items({ setItemChanged }) {
                             className="min-h-[150px] min-w-[150px] object-cover z-50 translate-y-4 items-image-shadow"
                           />
                           <div className="absolute inset-0 overflow-hidden rounded-t-[10px]">
-                          <Image src={'/background-texture.svg'} width={300} height={300} className="opacity-70 absolute w-full h-full  object-cover" />
+                            <Image src={'/background-texture.svg'} width={300} height={300} className="opacity-70 absolute w-full h-full  object-cover" />
 
                           </div>
 

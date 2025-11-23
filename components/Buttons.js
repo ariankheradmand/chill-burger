@@ -243,7 +243,7 @@ function Buttons({ setItemChanged, itemChanged }) {
         </div>
         <div className="flex items-center justify-between gap-2 w-full">
           <button
-            onClick={() => scrollToItems("appetizer")}
+            onClick={() => scrollToItems("drink")}
             id="left-b"
             className="w-[45%] text-lg bg-primary-black text-white py-3 shadow-rb rounded-[10px] flex-rc gap-2"
           >
@@ -251,7 +251,7 @@ function Buttons({ setItemChanged, itemChanged }) {
             نوشیدنی ها
           </button>
           <button
-            onClick={() => scrollToItems("salad")}
+            onClick={() => scrollToItems("topping")}
             id="right-b"
             className="w-[45%] text-lg opacity-0 bg-Secondary-gold text-black py-3 shadow-rb rounded-[10px] flex-rc gap-2"
           >
