@@ -38,7 +38,8 @@ function Footer() {
             مارا در شبکه های اجتماعی دنبال کنید
           </span>
           <div className="flex items-center justify-between gap-4">
-           <a href="https://chillburger.info"> <Instagram className="size-9" /></a>
+           <a href="https://chillburger.info"> <Instagram className="size-9" />
+           </a>
             <Image
               alt="snapp-brand-logo"
               className="size-11"
@@ -62,7 +63,7 @@ function Footer() {
           ></iframe>
         </div>
       </div>
-      <div className="flex-rc w-11/12 sm:w-90 bg-black/50 py-2 rounded-[10px] mb-3 z-20">
+      <div dir="rtl" className="flex-rc w-11/12 sm:w-90 bg-black/50 py-2 rounded-[10px] mb-3 z-20">
         تمام حقوق سایت مربوط به تیم Auren Design میباشد
       </div>
     </div>

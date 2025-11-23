@@ -251,7 +251,7 @@ function Items({ setItemChanged }) {
                             className="min-h-[150px] min-w-[150px] object-cover z-50 translate-y-4 items-image-shadow"
                           />
                           <div className="absolute inset-0 overflow-hidden rounded-t-[10px]">
-                            <Image src={'/background-texture.svg'} width={300} height={300} className="opacity-70 absolute w-full h-full  object-cover" />
+                            <Image src={'/background-texture.svg'} alt="background texture" width={3000} height={3000} className="opacity-70 absolute w-full h-full  object-cover" />
 
                           </div>
 
