@@ -99,6 +99,35 @@ function Buttons({ setItemChanged, itemChanged }) {
         }
       );
     });
+
+    // Hanging Sign Animation
+    gsap.utils.toArray(".hanging-sign").forEach((sign, i) => {
+      gsap.fromTo(
+        sign,
+        { y: -100, rotation: i === 0 ? 10 : -10, opacity: 0 },
+        {
+          y: -5,
+          rotation: 0,
+          opacity: 1,
+          duration: 2,
+          ease: "elastic.out(1, 0.3)",
+          scrollTrigger: {
+            trigger: sign,
+            start: "top 80%",
+          },
+        }
+      );
+
+      // Continuous gentle sway
+      gsap.to(sign, {
+        rotation: i === 0 ? 5 : -5,
+        duration: 3,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+        delay: 2,
+      });
+    });
   });
 
   const scrollToItems = (id) => {
@@ -182,7 +211,7 @@ function Buttons({ setItemChanged, itemChanged }) {
         </span>
       )}
       {/* Items Container */}
-      <div className="flex-cc gap-2 w-11/12 sm:w-90 your-container pt-4">
+      <div className="flex-cc gap-2 w-11/12 sm:w-90 your-container pt-4 ">
         <div className="flex items-center justify-between gap-2 w-full">
           <button
             onClick={() => scrollToItems("burger")}
@@ -211,6 +240,48 @@ function Buttons({ setItemChanged, itemChanged }) {
             <Salad />
             سالاد ها
           </button>
+        </div>
+        <div className="flex items-center justify-between gap-2 w-full">
+          <button
+            onClick={() => scrollToItems("appetizer")}
+            id="left-b"
+            className="w-[45%] text-lg bg-primary-black text-white py-3 shadow-rb rounded-[10px] flex-rc gap-2"
+          >
+            <Soup />
+            نوشیدنی ها
+          </button>
+          <button
+            onClick={() => scrollToItems("salad")}
+            id="right-b"
+            className="w-[45%] text-lg opacity-0 bg-Secondary-gold text-black py-3 shadow-rb rounded-[10px] flex-rc gap-2"
+          >
+            <Salad />
+            تاپینگ ها
+          </button>
+        </div>
+
+        <div dir="rtl" className="w-full h-38 relative text-primary-red z-5 ">
+          {/* Right Sign (RTL Start) */}
+          <div className="hanging-sign absolute right-4 top-0 flex flex-col items-center origin-top">
+            <div className="h-24 w-px border-l-2 border-primary-black border-dotted"></div>
+            <div className="relative -mt-1">
+              <div className="size-3 bg-primary-black rounded-full absolute left-1/2  -translate-x-1/2 -top-1 z-10"></div>
+              <div className="bg-primary-white px-4 py-3 rounded-[10px] shadow-rbv2 -rotate-20">
+                همبرگر های خوشمزه
+              </div>
+            </div>
+          </div>
+
+          {/* Left Sign (RTL End) */}
+          <div className="hanging-sign absolute left-4 top-0 flex flex-col items-center origin-top">
+            <div className="h-20 w-px border-l-2 border-primary-black border-dotted"></div>
+            <div className="relative -mt-1">
+              <div className="size-3 bg-primary-black rounded-full absolute left-1/2 -translate-x-1/2 -top-1 z-10"></div>
+              <div className="bg-primary-white px-4 py-3 rounded-[10px] shadow-rb rotate-20">
+                یه bite بزن chill شو
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

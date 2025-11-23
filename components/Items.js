@@ -22,7 +22,7 @@ import Image from "next/image";
 gsap.registerPlugin(ScrollTrigger);
 
 function Items({ setItemChanged }) {
-  const width = () => Math.floor(Math.random() * (95 - 80 + 1) + 80);
+  const width = () => Math.floor(Math.random() * (100 - 100 + 1) + 100);
   const [activePlus, setActivePlus] = useState({});
   const [openItem, setOpenItem] = useState(null); // برای نگه داشتن آیتم باز شده
   const containerRef = useRef(null);
@@ -30,9 +30,7 @@ function Items({ setItemChanged }) {
   useGSAP(() => {
     if (typeof window === "undefined") return;
     gsap.utils.toArray(".item").forEach((el) => {
-      // Initially hide text and SVGs
       const textAndSvgs = el.querySelectorAll(".textInItems, svg");
-      gsap.set(textAndSvgs, { opacity: 0, y: 10 });
 
       const tl = gsap.timeline({
         scrollTrigger: {
@@ -55,8 +53,9 @@ function Items({ setItemChanged }) {
       );
 
       // Then animate text and SVGs after 80% of the container animation
-      tl.to(
+      tl.fromTo(
         textAndSvgs,
+        { opacity: 0, y: 10 },
         {
           opacity: 1,
           y: 0,
@@ -66,6 +65,19 @@ function Items({ setItemChanged }) {
         },
         0.48 // Start at 80% of the container animation (0.6 * 0.8 = 0.48)
       );
+      const image = el.querySelector(".items-image");
+      if (image) {
+        tl.fromTo(
+          image,
+          { opacity: 0 },
+          {
+            opacity: 1,
+            duration: 0.3,
+            ease: "sine",
+          },
+          "<="
+        );
+      }
     });
   });
 
@@ -110,10 +122,10 @@ function Items({ setItemChanged }) {
                 i === 0
                   ? "burger"
                   : i === 1
-                  ? "appetizer"
-                  : i === 2
-                  ? "salad"
-                  : "default value"
+                    ? "appetizer"
+                    : i === 2
+                      ? "salad"
+                      : "default value"
               }
               className="flex-rc w-full h-24 relative overflow-hidden"
             >
@@ -135,15 +147,15 @@ function Items({ setItemChanged }) {
                 return (
                   <div
                     key={j}
-                    className={`item opacity-0 relative flex items-center max-h-[56px] ${
-                      i === 0 ? "text-white" : "text-black"
-                    } justify-between py-4 px-2 shadow-rb rounded-[10px]`}
+                    className={`item opacity-0 relative flex ${food.items.picture ? "min-h-[238px] max-h-[238px]" : "min-h-[40px] max-h-[56px]"} flex-col items-center  ${i === 0 ? "text-white" : "text-black"
+                      } justify-between py-4  shadow-rb rounded-[10px]`}
                     style={{ backgroundColor: `var(${colorScheme})` }}
                     onClick={(e) => {
                       e.stopPropagation(); // جلوگیری از بستن موقع کلیک روی خودش
                       setOpenItem((prev) => (prev === key ? null : key));
                     }}
                   >
+
                     {openItem === key && (
                       <div
                         className="absolute top-[90%] w-3/4 right-1/8 shadow-rb rounded-b-[10px] z-50 overflow-hidden"
@@ -220,54 +232,72 @@ function Items({ setItemChanged }) {
                       </div>
                     )}
 
-                    <div className="flex-rc gap-3 textInItems">
-                      <span dir="rtl">{food.items.price}</span>
-                    </div>
+                    {food.items.picture && (
+                      <div className="w-full h-full flex-cc px-1 ">
+                        <div className="items-image w-full h-full opacity-0 relative flex-cc bg-Secondary-cream -translate-y-2 rounded-t-[10px] min-h-full">
 
-                    <div className="flex items-center gap-2">
-                      <BadgeQuestionMark
-                        style={{ backgroundColor: `var(${colorScheme})` }}
-                      />
+                          <img
+                            src={food.items.picture}
+                            alt={food.items.name}
+                            width={200}
+                            height={200}
+                            className="min-h-[150px] min-w-[150px] object-cover z-50 translate-y-4"
+                          />
+                          <Image src={'/background-texture.svg'} width={300} height={300} className="opacity-70 absolute w-full h-full  object-cover" />
 
-                      <span className="textInItems">{food.items.name}</span>
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          handleAdd(food, key);
-                        }}
-                        className="p-1 bg-white/30 relative flex-rc hover:bg-white/50 shadow-md shadow-black/40  rounded-[20px]"
-                        title="Save to reminders"
-                      >
-                        {activePlus[key] ? (
-                          <Check size={18} />
-                        ) : (
-                          <CirclePlus size={18} />
-                        )}
+                        </div>
+                      </div>
+                    )}
 
-                        {activePlus[key] ? (
-                          <div
-                            ref={(el) => {
-                              if (el) {
-                                gsap.set(el, { y: -5, opacity: 1 });
+                    <div className="w-full h-full flex items-center justify-between px-2">
 
-                                gsap.to(el, {
-                                  y: -30,
-                                  opacity: 0,
-                                  duration: 1,
-                                  ease: "sine",
-                                });
-                              }
-                            }}
-                            className={`absolute text-lg font-thin     select-none ${
-                              i === 3 ? "text-white" : "text-black"
-                            }`}
-                          >
-                            +
-                          </div>
-                        ) : (
-                          ""
-                        )}
-                      </button>
+                      <div className="flex-rc gap-3 textInItems">
+                        <span dir="rtl">{food.items.price}</span>
+                        <BadgeQuestionMark
+                          style={{ backgroundColor: `var(${colorScheme})` }}
+                        />
+                      </div>
+
+                      <div className="flex items-center gap-2">
+                        <span className="textInItems">{food.items.name}</span>
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleAdd(food, key);
+                          }}
+                          className="p-1 bg-white/30 relative flex-rc hover:bg-white/50 shadow-md shadow-black/40  rounded-[20px]"
+                          title="Save to reminders"
+                        >
+                          {activePlus[key] ? (
+                            <Check size={18} />
+                          ) : (
+                            <CirclePlus size={18} />
+                          )}
+
+                          {activePlus[key] ? (
+                            <div
+                              ref={(el) => {
+                                if (el) {
+                                  gsap.set(el, { y: -5, opacity: 1 });
+
+                                  gsap.to(el, {
+                                    y: -30,
+                                    opacity: 0,
+                                    duration: 1,
+                                    ease: "sine",
+                                  });
+                                }
+                              }}
+                              className={`absolute text-lg font-thin     select-none ${i === 3 ? "text-white" : "text-black"
+                                }`}
+                            >
+                              +
+                            </div>
+                          ) : (
+                            ""
+                          )}
+                        </button>
+                      </div>
                     </div>
                   </div>
                 );

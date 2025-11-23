@@ -9,7 +9,7 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-lalezar: var(--font-geist-lalezar);
-  --color-primary-black: #000000;
+  --color-primary-black: #141412;
   --color-primary-red: #ed412e;
   --color-primary-white: #fff6ec;
   --color-primary-dark: #141412;
@@ -50,9 +50,9 @@ body {
 }
 
 .shadow-rbv2 {
-  box-shadow: 10px 10px 0px -1px rgba(0,0,0,1);
--webkit-box-shadow: 10px 10px 0px -1px rgba(0,0,0,1);
--moz-box-shadow: 10px 10px 0px -1px rgba(0,0,0,1);
+  box-shadow: 10px 7px 0px -1px rgba(0,0,0,1);
+-webkit-box-shadow: 7px 7px 0px -1px rgba(0,0,0,1);
+-moz-box-shadow: 10px 7px 0px -1px rgba(0,0,0,1);
 
 }
 

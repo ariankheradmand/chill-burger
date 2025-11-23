@@ -18,6 +18,7 @@ const Menu_items = [
           "خیارشور",
         ],
         allergyWarning: "حاوی لبنیات و گلوتن",
+        picture: "/ItemsImage/burger.png"
       },
     },
 
@@ -87,9 +88,10 @@ const Menu_items = [
           "خیارشور",
         ],
         allergyWarning: "حاوی لبنیات و گلوتن",
+
       },
     },
-  ],  [
+  ], [
     { header: "پیش‌غذاها" },
     { imgsrc: "/HeaderImage/pexels-kei-photo-1420806-2741461 2.jpg" },
     { colorScheme: "--color-primary-white" },
@@ -101,6 +103,7 @@ const Menu_items = [
         taste: "ترد، نمکی و کلاسیک",
         ingredients: ["سیب‌زمینی", "روغن", "نمک"],
         allergyWarning: "فاقد مواد حساسیت‌زای اصلی",
+        picture: "/ItemsImage/fries.png"
       },
     },
 
@@ -111,6 +114,7 @@ const Menu_items = [
         taste: "کش‌دار، گرم و پنیرمال",
         ingredients: ["سیب‌زمینی", "پنیر چدار", "سس مخصوص"],
         allergyWarning: "حاوی لبنیات",
+        picture: "/ItemsImage/fries-ch.png"
       },
     },
   ],
@@ -132,6 +136,7 @@ const Menu_items = [
           "پنیر فتا",
         ],
         allergyWarning: "حاوی لبنیات",
+        picture: "/ItemsImage/reyhan.png"
       },
     },
 
@@ -141,11 +146,12 @@ const Menu_items = [
         price: "295 ت",
         taste: "ترکیب لیمویی، تازه و سبک",
         ingredients: ["بیبی اسفناج", "درسینگ لیمو", "پیاز قرمز", "پنیر فتا"],
-        allergyWarning: "حاوی لبنیات",
+        allergyWarning: "حاوی لبنیات", 
+        picture: "/ItemsImage/grecce.png"
       },
     },
   ],
-  
+
 ];
 
 export default Menu_items;
