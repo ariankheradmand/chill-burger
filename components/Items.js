@@ -132,8 +132,8 @@ function Items({ setItemChanged }) {
               <div className="absolute w-full h-full flex-cc">
                 <Image alt={header} width={600} height={600} src={imgsrc} />
               </div>
-              <div className="absolute inset-0 bg-gradient-to-b from-70% to-black" />
-              <button className="px-4 text-xl text-white py-2 rounded-[10px] translate-y-4 bg-white/10 backdrop-blur-[2px] flex items-center justify-center gap-2 relative z-10">
+              <div className="absolute inset-0 bg-gradient-to-b from-50% to-black" />
+              <button className="px-4 text-xl text-white py-2 rounded-[10px] translate-y-6  flex items-center justify-center gap-2 relative z-10">
                 {i === 0 ? <Soup /> : i === 1 ? <Salad /> : <Hamburger />}
                 {header}
               </button>
@@ -241,7 +241,7 @@ function Items({ setItemChanged }) {
                             alt={food.items.name}
                             width={200}
                             height={200}
-                            className="min-h-[150px] min-w-[150px] object-cover z-50 translate-y-4"
+                            className="min-h-[150px] min-w-[150px] object-cover z-50 translate-y-4 items-image-shadow"
                           />
                           <div className="absolute inset-0 overflow-hidden rounded-t-[10px]">
                           <Image src={'/background-texture.svg'} width={300} height={300} className="opacity-70 absolute w-full h-full  object-cover" />

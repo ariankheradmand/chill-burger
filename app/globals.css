@@ -42,7 +42,9 @@ body {
   
 }
 
-
+.items-image-shadow {
+   filter: drop-shadow(12px 12px 10px rgba(0, 0, 0, 0.7));
+}
 .shadow-rb {
   box-shadow: 10px 5px 0px -1px rgba(0,0,0,1);
 -webkit-box-shadow: 10px 5px 0px -1px rgba(0,0,0,1);
