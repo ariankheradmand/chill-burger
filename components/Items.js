@@ -162,7 +162,7 @@ function Items({ setItemChanged }) {
 
                     {openItem === key && (
                       <div
-                        className="absolute top-[90%] w-3/4 right-1/8 shadow-rb rounded-b-[10px] z-50 overflow-hidden"
+                        className={`absolute ${food.items.picture ? "top-[98%]" : "top-[90%]"}  w-3/4 right-1/8 shadow-rb rounded-b-[10px] z-50 overflow-hidden`}
                         style={{
                           backgroundColor: `var(${colorScheme})`,
                         }}
