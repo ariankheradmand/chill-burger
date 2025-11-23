@@ -234,7 +234,7 @@ function Items({ setItemChanged }) {
 
                     {food.items.picture && (
                       <div className="w-full h-full flex-cc px-1 ">
-                        <div className="items-image w-full h-full opacity-0 relative flex-cc bg-Secondary-cream -translate-y-2 rounded-t-[10px] min-h-full">
+                        <div className="items-image w-full h-full opacity-0 relative flex-cc bg-Secondary-cream -translate-y-3 rounded-t-[7px] min-h-full">
 
                           <img
                             src={food.items.picture}
@@ -243,7 +243,10 @@ function Items({ setItemChanged }) {
                             height={200}
                             className="min-h-[150px] min-w-[150px] object-cover z-50 translate-y-4"
                           />
+                          <div className="absolute inset-0 overflow-hidden rounded-t-[10px]">
                           <Image src={'/background-texture.svg'} width={300} height={300} className="opacity-70 absolute w-full h-full  object-cover" />
+
+                          </div>
 
                         </div>
                       </div>
