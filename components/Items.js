@@ -261,9 +261,10 @@ function Items({ setItemChanged }) {
 
                     <div className="w-full h-full flex items-center justify-between px-2">
 
-                      <div className="flex-rc gap-3 textInItems">
+                      <div className="flex-rc gap-3 textInItems ">
                         <span dir="rtl">{food.items.price}</span>
                         <BadgeQuestionMark
+                        className="animate-pulse"
                           style={{ backgroundColor: `var(${colorScheme})` }}
                         />
                       </div>

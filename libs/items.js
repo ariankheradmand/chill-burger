@@ -167,18 +167,9 @@ const Menu_items = [
     },
     {
       items: {
-        name: "کوکا - کوکا زیرو",
-        price: "55 ت",
-        taste: "گازدار و خنک",
-        ingredients: ["نوشابه کولا"],
-        allergyWarning: "",
-      },
-    },
-    {
-      items: {
         name: "نوشابه دستساز",
-        price: "80 ت",
-        taste: "طعم نوستالژیک",
+        price: "60 ت",
+        taste: "لیموناد , زیرو , کوکاکولا",
         ingredients: ["عصاره طبیعی", "آب گازدار"],
         allergyWarning: "",
       },
@@ -192,7 +183,7 @@ const Menu_items = [
     {
       items: {
         name: "سس گارلیک",
-        price: "20 ت",
+        price: "50 ت",
         taste: "سیر و سبزیجات",
         ingredients: ["سیر", "مایونز", "سبزیجات معطر"],
         allergyWarning: "حاوی تخم مرغ",
@@ -201,7 +192,7 @@ const Menu_items = [
     {
       items: {
         name: "سس ترافل",
-        price: "20 ت",
+        price: "50 ت",
         taste: "عطر ترافل",
         ingredients: ["قارچ ترافل", "سس مخصوص"],
         allergyWarning: "حاوی تخم مرغ",
@@ -210,7 +201,7 @@ const Menu_items = [
     {
       items: {
         name: "سس چیل",
-        price: "20 ت",
+        price: "50 ت",
         taste: "تند و آتشین",
         ingredients: ["فلفل چیلی", "ادویه مخصوص"],
         allergyWarning: "",
@@ -219,7 +210,7 @@ const Menu_items = [
     {
       items: {
         name: "سس اسموکی",
-        price: "20 ت",
+        price: "50 ت",
         taste: "دودی و باربیکیو",
         ingredients: ["عصاره دود", "گوجه فرنگی"],
         allergyWarning: "",
@@ -228,7 +219,7 @@ const Menu_items = [
     {
       items: {
         name: "سس هات",
-        price: "20 ت",
+        price: "50 ت",
         taste: "بسیار تند",
         ingredients: ["فلفل قرمز", "سیر"],
         allergyWarning: "",
