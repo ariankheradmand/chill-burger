@@ -1,4 +1,5 @@
 import { Geist, Geist_Mono, Lalezar } from "next/font/google";
+import { Suspense } from "react";
 import Script from "next/script";
 import "./globals.css";
 import LoadingScreen from "@/components/LoadingScreen";
@@ -21,13 +22,13 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "چیل برگر کرمانشاه | بهترین فست فود و همبرگر کرمانشاه",
+  title: "چیل برگر کرمانشاه | بهترین فست فود و اسمش برگر کرمانشاه",
   description:
     "چیل برگر کرمانشاه - بهترین و خوشمزه‌ترین همبرگر، پیتزا، سیب زمینی و فست فود کرمانشاه. سفارش آنلاین با تحویل سریع.",
   keywords:
-    "چیل برگر, فست فود کرمانشاه, همبرگر کرمانشاه, پیتزا کرمانشاه, سفارش آنلاین",
+    "چیل برگر, فست فود کرمانشاه, اسمش برگر کرمانشاه, پیتزا کرمانشاه, سفارش آنلاین",
   openGraph: {
-    title: "چیل برگر کرمانشاه | بهترین فست فود و همبرگر",
+    title: "چیل برگر کرمانشاه | بهترین فست فود و اسمش برگر",
     description:
       "بهترین و خوشمزه‌ترین همبرگر و فست فود کرمانشاه در چیل برگر. سفارش آنلاین با کیفیت عالی.",
     url: "https://www.chillburger.info/",
@@ -57,7 +58,9 @@ export default function RootLayout({ children }) {
         </Script>
 
         <LoadingScreen />
-        <Analytics />
+        <Suspense fallback={null}>
+          <Analytics />
+        </Suspense>
         {children}
       </body>
     </html >
