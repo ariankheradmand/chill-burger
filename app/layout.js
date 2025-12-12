@@ -1,6 +1,8 @@
 import { Geist, Geist_Mono, Lalezar } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import LoadingScreen from "@/components/LoadingScreen";
+import Analytics from "./analytics";
 
 const geistLalezar = Lalezar({
   variable: "--font-geist-lalezar",
@@ -41,9 +43,23 @@ export default function RootLayout({ children }) {
   return (
     <html lang="fa">
       <body className={`${geistLalezar.variable} antialiased`}>
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-GQ4JRRT24K"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-GQ4JRRT24K');
+          `}
+        </Script>
+
         <LoadingScreen />
+        <Analytics />
         {children}
       </body>
-    </html>
+    </html >
   );
 }
