@@ -213,12 +213,12 @@ function Buttons({ setItemChanged, itemChanged }) {
         </span>
       )}
       {/* Items Container */}
-      <div className="flex-cc gap-2 w-11/12 sm:w-90 your-container pt-4 ">
-        <div className="flex items-center justify-between gap-2 w-full">
+      <div className="flex-cc gap-4 w-11/12 sm:w-90 your-container pt-4 ">
+        <div className="flex items-center justify-center gap-2 w-full">
           <button
             onClick={() => scrollToItems("burger")}
             id="left-b"
-            className="w-[100%] text-lg text-white bg-primary-red py-4 shadow-rb rounded-[10px] flex-rc gap-2"
+            className="w-[65%] text-lg text-white bg-primary-red py-3 shadow-rb rounded-[10px] flex-rc gap-2"
           >
             <Hamburger />
             برگر ها
