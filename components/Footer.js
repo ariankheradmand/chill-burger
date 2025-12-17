@@ -18,14 +18,14 @@ function Footer() {
       </video>
 
       <div className="w-11/12 sm:w-90 flex-cc bg-black/50 gap-4 mt-4 p-4 rounded-[20px] z-20">
-        <p>آدرس: خیابان ظفر , نبش کوچه ی شهدا </p>
+        <p>آدرس: بلوار ظفر جنوبی  , نبش کوچه ی شهدا </p>
       </div>
       <div
         dir="rtl"
         className="flex-rc w-11/12 sm:w-90 gap-4 p-4 bg-black/50 rounded-[20px] z-20"
       >
         <span>ساعات کاری :</span>
-        <span>از 11 ظهر تا 11 شب</span>{" "}
+        <span>از 11 ظهر تا 10:45 شب</span>{" "}
       </div>
 
       <div className="flex items-center justify-between w-11/12 sm:w-90 z-20">
