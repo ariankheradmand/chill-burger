@@ -38,7 +38,7 @@ function Items({ setItemChanged }) {
         scrollTrigger: {
           trigger: el,
           start: "top 95%",
-          toggleActions: "play none none none",
+          toggleActions: "restart reverse restart reverse",
         },
       });
 
