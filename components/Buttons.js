@@ -11,6 +11,8 @@ import {
   Soup,
   CupSoda,
   Utensils,
+  Plus,
+  Flame,
 } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -214,6 +216,7 @@ function Buttons({ setItemChanged, itemChanged }) {
       )}
       {/* Items Container */}
       <div className="flex-cc gap-4 w-11/12 sm:w-90 your-container pt-4 ">
+        {/* Row 1: برگر ها - full width */}
         <div className="flex items-center justify-center gap-2 w-full">
           <button
             onClick={() => scrollToItems("burger")}
@@ -225,6 +228,28 @@ function Buttons({ setItemChanged, itemChanged }) {
           </button>
         </div>
 
+        {/* Row 2: کمبو ها + ترتیلا */}
+        <div className="flex items-center justify-between gap-2 w-full">
+          <button
+            onClick={() => scrollToItems("combo")}
+            id="left-b"
+            className="w-[45%] text-lg bg-primary-white text-black py-3 shadow-rb rounded-[10px] flex-rc gap-2"
+          >
+            <Hamburger size={18} />
+            <Drumstick size={18} />
+            کمبو ها
+          </button>
+          <button
+            onClick={() => scrollToItems("tortilla")}
+            id="right-b"
+            className="w-[45%] text-lg opacity-0 bg-primary-red text-white py-3 shadow-rb rounded-[10px] flex-rc gap-2"
+          >
+            <Flame size={18} />
+            ترتیلا
+          </button>
+        </div>
+
+        {/* Row 3: پیش غذا + نوشیدنی ها */}
         <div className="flex items-center justify-between gap-2 w-full">
           <button
             onClick={() => scrollToItems("appetizer")}
@@ -235,30 +260,32 @@ function Buttons({ setItemChanged, itemChanged }) {
             پیش غذا
           </button>
           <button
-            onClick={() => scrollToItems("salad")}
-            id="right-b"
-            className="w-[45%] text-lg opacity-0 bg-Secondary-lightblue text-white py-3 shadow-rb rounded-[10px] flex-rc gap-2"
-          >
-            <Salad />
-            سالاد ها
-          </button>
-        </div>
-        <div className="flex items-center justify-between gap-2 w-full">
-          <button
             onClick={() => scrollToItems("drink")}
-            id="left-b"
-            className="w-[45%] text-lg bg-primary-black text-white py-3 shadow-rb rounded-[10px] flex-rc gap-2"
+            id="right-b"
+            className="w-[45%] text-lg opacity-0 bg-primary-black text-white py-3 shadow-rb rounded-[10px] flex-rc gap-2"
           >
             <CupSoda />
             نوشیدنی ها
           </button>
+        </div>
+
+        {/* Row 4: تاپینگ ها + افزودنی ها */}
+        <div className="flex items-center justify-between gap-2 w-full">
           <button
             onClick={() => scrollToItems("topping")}
-            id="right-b"
-            className="w-[45%] text-lg opacity-0 bg-Secondary-gold text-black py-3 shadow-rb rounded-[10px] flex-rc gap-2"
+            id="left-b"
+            className="w-[45%] text-lg bg-Secondary-gold text-black py-3 shadow-rb rounded-[10px] flex-rc gap-2"
           >
             <Utensils />
             تاپینگ ها
+          </button>
+          <button
+            onClick={() => scrollToItems("extras")}
+            id="right-b"
+            className="w-[45%] text-lg opacity-0 text-white bg-primary-black py-3 shadow-rb rounded-[10px] flex-rc gap-2"
+          >
+            <Plus />
+            افزودنی ها
           </button>
         </div>
 

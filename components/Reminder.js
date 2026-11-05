@@ -167,15 +167,13 @@ function Reminder({ reminderOpen, setItemChanged, setReminderOpen }) {
 
   return (
     <div
-      className={`fixed text-primary-black flex-cc h-screen w-screen z-100 top-0  ${
-        reminderOpen ? "" : "pointer-events-none"
-      }`}
+      className={`fixed text-primary-black flex-cc h-screen w-screen z-100 top-0  ${reminderOpen ? "" : "pointer-events-none"
+        }`}
     >
       <div
         onClick={() => setReminderOpen(false)}
-        className={` absolute w-full h-full z-50 bg-black/50 transition-all duration-500 ${
-          reminderOpen ? "opacity-100" : "opacity-0"
-        }`}
+        className={` absolute w-full h-full z-50 bg-black/50 transition-all duration-500 ${reminderOpen ? "opacity-100" : "opacity-0"
+          }`}
       ></div>
       <div
         ref={containerRef}
@@ -191,13 +189,20 @@ function Reminder({ reminderOpen, setItemChanged, setReminderOpen }) {
           <div className="w-3/12 text-end">بها</div>
         </div>
 
-        <div  className="flex flex-col w-full gap-3 text-content max-h-[400px] overflow-y-auto pb-1 [direction:ltr] [&>*]:[direction:rtl] min-h-[400px]:pr-2 min-h-[400px]:mr-[-8px]">
+        <div className="flex flex-col w-full gap-3 text-content max-h-[400px] overflow-y-auto pb-1 [direction:ltr] [&>*]:[direction:rtl] min-h-[400px]:pr-2 min-h-[400px]:mr-[-8px]">
           {data?.map((item, index) => (
             <div
               key={index}
               className="flex items-center justify-between w-full "
             >
-              <div className="w-5/12">{item?.name}</div>
+              <div className="w-5/12 flex items-center gap-1">
+                <span>{item?.name}</span>
+                {item?.type && (
+                  <span className={`text-[10px] px-[5px] py-[1px] rounded-full ${item.type === 'دوبل' ? 'bg-primary-red text-white' : 'bg-primary-dark text-white'}`}>
+                    {item.type}
+                  </span>
+                )}
+              </div>
 
               {/* Quantity with + / - */}
               <div className="w-4/12 flex items-center justify-center gap-2">
@@ -250,9 +255,9 @@ function Reminder({ reminderOpen, setItemChanged, setReminderOpen }) {
         <div
           onClick={() => {
             clearReminders();
-            setData([]); 
+            setData([]);
             setItemChanged(true);
-            setReminderOpen(false); 
+            setReminderOpen(false);
           }}
           className="flex gap-2 border text-content px-2 py-1 rounded-[10px] items-center justify-center"
         >
