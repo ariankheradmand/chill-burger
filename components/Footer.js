@@ -1,17 +1,41 @@
+"use client";
+
 import { Instagram, Map } from "lucide-react";
 import Image from "next/image";
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import Link from "next/link";
 
 function Footer() {
+  const videoRef = useRef(null);
+
+  useEffect(() => {
+    if (!videoRef.current || typeof IntersectionObserver === "undefined") return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            videoRef.current?.play().catch(() => {});
+          } else {
+            videoRef.current?.pause();
+          }
+        });
+      },
+      { rootMargin: "150px" }
+    );
+    observer.observe(videoRef.current);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <div className="w-full flex-cc bg-black/50 gap-10 relative pb-20">
       <video
+        ref={videoRef}
         autoPlay
         loop
         muted
         playsInline
-        className="absolute top-0 left-0 w-full h-full object-cover"
+        preload="none"
+        className="absolute top-0 left-0 w-full h-full object-cover pointer-events-none transform-gpu"
       >
         <source src="/Footer.mkv" type="video/mp4" />
         مرورگر شما از ویدیو پشتیبانی نمی‌کند.

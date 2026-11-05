@@ -17,62 +17,65 @@ export default function AboutUs() {
 
     useGSAP(
         () => {
-            // Hero Text Animation
-            const tl = gsap.timeline();
+            // Hero Text Animation with GPU transforms
+            const tl = gsap.timeline({ defaults: { force3D: true } });
             tl.from(".hero-text-1", {
-                y: 100,
+                y: 60,
                 opacity: 0,
-                duration: 1,
-                ease: "power4.out",
+                duration: 0.8,
+                ease: "power3.out",
             })
                 .from(
                     ".hero-text-2",
                     {
-                        y: 100,
+                        y: 60,
                         opacity: 0,
-                        duration: 1,
-                        ease: "power4.out",
+                        duration: 0.8,
+                        ease: "power3.out",
                     },
-                    "-=0.8"
+                    "-=0.6"
                 )
                 .from(
                     ".hero-desc",
                     {
-                        y: 50,
+                        y: 30,
                         opacity: 0,
-                        duration: 1,
-                        ease: "power3.out",
+                        duration: 0.8,
+                        ease: "power2.out",
                     },
-                    "-=0.5"
+                    "-=0.4"
                 );
 
             // Philosophy Section Animation
             gsap.from(".philosophy-content", {
                 scrollTrigger: {
                     trigger: ".philosophy-section",
-                    start: "top 70%",
-                    toggleActions: "play none none reverse",
+                    start: "top 75%",
+                    toggleActions: "play none none none",
+                    once: true,
                 },
-                y: 50,
+                y: 40,
                 opacity: 0,
-                duration: 1,
-                stagger: 0.2,
+                duration: 0.8,
+                stagger: 0.15,
+                ease: "power2.out",
+                force3D: true,
             });
 
-            // Quality Section Cards Animation
-            gsap.utils.toArray(".quality-card").forEach((card, i) => {
-                gsap.from(card, {
-                    scrollTrigger: {
-                        trigger: card,
-                        start: "top 85%",
-                        toggleActions: "play none none reverse",
-                    },
-                    y: 50,
-                    opacity: 0,
-                    duration: 0.8,
-                    delay: i * 0.1,
-                    ease: "back.out(1.7)",
-                });
+            // Quality Section Cards Animation (batched)
+            gsap.from(".quality-card", {
+                scrollTrigger: {
+                    trigger: ".quality-card",
+                    start: "top 85%",
+                    toggleActions: "play none none none",
+                    once: true,
+                },
+                y: 40,
+                opacity: 0,
+                duration: 0.7,
+                stagger: 0.12,
+                ease: "back.out(1.4)",
+                force3D: true,
             });
 
             // Parallax Effect for Backgrounds
@@ -83,7 +86,8 @@ export default function AboutUs() {
                     end: "bottom bottom",
                     scrub: 1,
                 },
-                y: 100,
+                y: 80,
+                force3D: true,
             });
         },
         { scope: containerRef }
@@ -101,8 +105,7 @@ export default function AboutUs() {
             {/* Hero Section */}
             <section className="relative h-screen w-full flex-cc overflow-hidden">
                 <div className="absolute inset-0 z-0">
-
-                    <div className="absolute inset-0 bg-primary-black"/>
+                    <div className="absolute inset-0 bg-primary-black" />
                 </div>
 
                 <div className="relative z-10 text-center text-white flex flex-col items-center gap-4 px-4">
@@ -150,7 +153,7 @@ export default function AboutUs() {
                             <Flame size={32} />
                             <h3 className="text-4xl">وایب چیل</h3>
                         </div>
-                        <p  className="text-xl leading-8 text-gray-300 text-justify">
+                        <p className="text-xl leading-8 text-gray-300 text-justify">
                             فلسفه ما ساده است: <span className="text-primary-red">کیفیت</span>، <span className="text-Secondary-gold">تازگی</span> و <span className="text-Secondary-lightblue">آرامش</span>.
                             ما معتقدیم غذا باید با عشق آماده شود و در محیطی سرو شود که شما احساس راحتی کنید.
                             هر آیتم در منوی ما با دقت و وسواس انتخاب شده تا تجربه‌ای متفاوت را برای شما رقم بزند.
@@ -180,7 +183,7 @@ export default function AboutUs() {
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8 px-4">
                         {/* Card 1 */}
-                        <div className="quality-card bg-white p-8 rounded-[20px] shadow-rb hover:shadow-xl transition-shadow border border-gray-100 flex flex-col items-center text-center gap-4 group">
+                        <div className="quality-card bg-white p-8 rounded-[20px] shadow-rb hover:shadow-xl transition-shadow border border-gray-100 flex flex-col items-center text-center gap-4 group transform-gpu will-change-transform">
                             <div className="p-4 bg-primary-red/10 rounded-full text-primary-red group-hover:bg-primary-red group-hover:text-white transition-colors duration-300">
                                 <Heart size={40} />
                             </div>
@@ -191,7 +194,7 @@ export default function AboutUs() {
                         </div>
 
                         {/* Card 2 */}
-                        <div className="quality-card bg-white p-8 rounded-[20px] shadow-rb hover:shadow-xl transition-shadow border border-gray-100 flex flex-col items-center text-center gap-4 group">
+                        <div className="quality-card bg-white p-8 rounded-[20px] shadow-rb hover:shadow-xl transition-shadow border border-gray-100 flex flex-col items-center text-center gap-4 group transform-gpu will-change-transform">
                             <div className="p-4 bg-Secondary-gold/20 rounded-full text-Secondary-gold group-hover:bg-Secondary-gold group-hover:text-black transition-colors duration-300">
                                 <Star size={40} />
                             </div>
@@ -202,7 +205,7 @@ export default function AboutUs() {
                         </div>
 
                         {/* Card 3 */}
-                        <div className="quality-card bg-white p-8 rounded-[20px] shadow-rb hover:shadow-xl transition-shadow border border-gray-100 flex flex-col items-center text-center gap-4 group">
+                        <div className="quality-card bg-white p-8 rounded-[20px] shadow-rb hover:shadow-xl transition-shadow border border-gray-100 flex flex-col items-center text-center gap-4 group transform-gpu will-change-transform">
                             <div className="p-4 bg-Secondary-lightblue/20 rounded-full text-Secondary-lightblue group-hover:bg-Secondary-lightblue group-hover:text-white transition-colors duration-300">
                                 <Flame size={40} />
                             </div>

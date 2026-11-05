@@ -44,55 +44,60 @@ function Items({ setItemChanged }) {
 
   useGSAP(() => {
     if (typeof window === "undefined") return;
-    gsap.utils.toArray(".item").forEach((el) => {
-      const textAndSvgs = el.querySelectorAll(".textInItems, svg");
 
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: el,
-          start: "top 95%",
-          toggleActions: "restart reverse restart reverse",
-        },
-      });
-
-      tl.fromTo(
-        el,
-        { width: 0, opacity: 0 },
-        {
-          opacity: 1,
-          width: () => width() + "%",
-          duration: 0.6,
-          ease: "sine",
-        },
-      );
-
-      tl.fromTo(
-        textAndSvgs,
-        { opacity: 0, y: 10 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.3,
-          stagger: 0.05,
-          ease: "sine",
-        },
-        0.48,
-      );
-      const image = el.querySelector(".items-image");
-      if (image) {
-        tl.fromTo(
-          image,
-          { opacity: 0 },
+    ScrollTrigger.batch(".item", {
+      start: "top 95%",
+      once: true,
+      onEnter: (batch) => {
+        gsap.fromTo(
+          batch,
+          { scaleX: 0, opacity: 0 },
           {
+            scaleX: 1,
             opacity: 1,
-            duration: 0.3,
-            ease: "sine",
-          },
-          "<=",
+            duration: 0.5,
+            stagger: 0.06,
+            ease: "sine.out",
+            force3D: true,
+            transformOrigin: "center center",
+          }
         );
-      }
+
+        batch.forEach((el) => {
+          const textAndSvgs = el.querySelectorAll(".textInItems, svg");
+          if (textAndSvgs.length > 0) {
+            gsap.fromTo(
+              textAndSvgs,
+              { opacity: 0, y: 8 },
+              {
+                opacity: 1,
+                y: 0,
+                duration: 0.3,
+                stagger: 0.03,
+                ease: "sine.out",
+                delay: 0.15,
+                force3D: true,
+              }
+            );
+          }
+          const image = el.querySelector(".items-image");
+          if (image) {
+            gsap.fromTo(
+              image,
+              { opacity: 0 },
+              {
+                opacity: 1,
+                duration: 0.35,
+                ease: "sine.out",
+                delay: 0.1,
+                force3D: true,
+              }
+            );
+          }
+        });
+      },
     });
-  });
+  }, []);
 
   useEffect(() => {
     const handleOutsideClick = (e) => {
@@ -105,34 +110,33 @@ function Items({ setItemChanged }) {
     return () => document.removeEventListener("click", handleOutsideClick);
   }, []);
 
-  // Animate toggle slider
+  // Animate toggle slider & price tags
   useEffect(() => {
     if (toggleRef.current) {
       const slider = toggleRef.current.querySelector(".toggle-slider");
       if (slider) {
         gsap.to(slider, {
           x: priceMode === "single" ? 0 : "-100%",
-          duration: 0.35,
+          duration: 0.3,
           ease: "power2.out",
+          force3D: true,
         });
       }
     }
-    // Animate price tags
-    gsap.utils.toArray(".price-single").forEach((el) => {
-      gsap.to(el, {
-        scale: priceMode === "single" ? 1 : 0.85,
-        opacity: priceMode === "single" ? 1 : 0.5,
-        duration: 0.3,
-        ease: "power2.out",
-      });
+    // High-performance batch animation for price tags (no forEach)
+    gsap.to(".price-single", {
+      scale: priceMode === "single" ? 1 : 0.85,
+      opacity: priceMode === "single" ? 1 : 0.5,
+      duration: 0.25,
+      ease: "power2.out",
+      force3D: true,
     });
-    gsap.utils.toArray(".price-double").forEach((el) => {
-      gsap.to(el, {
-        scale: priceMode === "double" ? 1 : 0.85,
-        opacity: priceMode === "double" ? 1 : 0.5,
-        duration: 0.3,
-        ease: "power2.out",
-      });
+    gsap.to(".price-double", {
+      scale: priceMode === "double" ? 1 : 0.85,
+      opacity: priceMode === "double" ? 1 : 0.5,
+      duration: 0.25,
+      ease: "power2.out",
+      force3D: true,
     });
   }, [priceMode]);
 
@@ -304,9 +308,9 @@ function Items({ setItemChanged }) {
                 return (
                   <div
                     key={j}
-                    className={`item opacity-0 relative flex ${food.items.picture ? "min-h-[238px] max-h-[238px]" : "min-h-[40px] max-h-[56px]"} flex-col items-center  ${
+                    className={`item ${food.items.picture ? "item-card-with-img min-h-[238px] max-h-[238px]" : "item-card min-h-[40px] max-h-[56px]"} w-full opacity-0 relative flex flex-col items-center ${
                       colorScheme === "--color-primary-red" || colorScheme === "--color-primary-black" ? "text-white" : "text-black"
-                    } justify-between py-4  shadow-rb rounded-[10px]`}
+                    } justify-between py-4 shadow-rb rounded-[10px] transform-gpu will-change-transform`}
                     style={{ backgroundColor: `var(${colorScheme})` }}
                     onClick={(e) => {
                       e.stopPropagation();
@@ -315,7 +319,7 @@ function Items({ setItemChanged }) {
                   >
                     {openItem === key && (
                       <div
-                        className={`absolute ${food.items.picture ? "top-[98%]" : "top-[90%]"}  w-3/4 right-1/8 shadow-rb rounded-b-[10px] z-50 overflow-hidden`}
+                        className={`absolute ${food.items.picture ? "top-[98%]" : "top-[90%]"} w-3/4 right-1/8 shadow-rb rounded-b-[10px] z-50 overflow-hidden transform-gpu will-change-transform`}
                         style={{
                           backgroundColor: `var(${colorScheme})`,
                         }}
@@ -325,20 +329,23 @@ function Items({ setItemChanged }) {
                             gsap.set(spans, { opacity: 0 });
                             gsap.fromTo(
                               el,
-                              { y: -50, height: 0, opacity: 0 },
+                              { y: -15, scaleY: 0, opacity: 0 },
                               {
                                 y: 0,
-                                height: "auto",
+                                scaleY: 1,
                                 opacity: 1,
-                                duration: 0.4,
-                                ease: "sine",
+                                duration: 0.3,
+                                ease: "power2.out",
+                                transformOrigin: "top",
+                                force3D: true,
                                 onComplete: () => {
                                   gsap.to(spans, {
                                     opacity: 1,
                                     y: 0,
-                                    duration: 0.4,
-                                    stagger: 0.07,
-                                    ease: "sine",
+                                    duration: 0.25,
+                                    stagger: 0.04,
+                                    ease: "power2.out",
+                                    force3D: true,
                                   });
                                 },
                               },
@@ -490,12 +497,13 @@ function Items({ setItemChanged }) {
                                   gsap.to(el, {
                                     y: -30,
                                     opacity: 0,
-                                    duration: 1,
-                                    ease: "sine",
+                                    duration: 0.8,
+                                    ease: "power1.out",
+                                    force3D: true,
                                   });
                                 }
                               }}
-                              className={`absolute text-lg font-thin     select-none ${
+                              className={`absolute text-lg font-thin select-none pointer-events-none ${
                                 colorScheme === "--color-primary-red" || colorScheme === "--color-primary-black" ? "text-white" : "text-black"
                               }`}
                             >
