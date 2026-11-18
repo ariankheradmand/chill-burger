@@ -308,9 +308,9 @@ function Items({ setItemChanged }) {
                 return (
                   <div
                     key={j}
-                    className={`item ${food.items.picture ? "item-card-with-img min-h-[238px] max-h-[238px]" : "item-card min-h-[40px] max-h-[56px]"} w-full opacity-0 relative flex flex-col items-center ${
+                    className={`item ${openItem === key ? "z-50" : "z-10"} w-full opacity-0 relative flex ${food.items.picture ? "min-h-[238px] max-h-[238px]" : "min-h-[40px] max-h-[56px]"} flex-col items-center ${
                       colorScheme === "--color-primary-red" || colorScheme === "--color-primary-black" ? "text-white" : "text-black"
-                    } justify-between py-4 shadow-rb rounded-[10px] transform-gpu will-change-transform`}
+                    } justify-between py-4 shadow-rb rounded-[10px]`}
                     style={{ backgroundColor: `var(${colorScheme})` }}
                     onClick={(e) => {
                       e.stopPropagation();
@@ -319,7 +319,7 @@ function Items({ setItemChanged }) {
                   >
                     {openItem === key && (
                       <div
-                        className={`absolute ${food.items.picture ? "top-[98%]" : "top-[90%]"} w-3/4 right-1/8 shadow-rb rounded-b-[10px] z-50 overflow-hidden transform-gpu will-change-transform`}
+                        className={`absolute ${food.items.picture ? "top-[98%]" : "top-[90%]"} w-3/4 right-1/8 shadow-rb rounded-b-[10px] z-50 overflow-hidden`}
                         style={{
                           backgroundColor: `var(${colorScheme})`,
                         }}
@@ -329,23 +329,20 @@ function Items({ setItemChanged }) {
                             gsap.set(spans, { opacity: 0 });
                             gsap.fromTo(
                               el,
-                              { y: -15, scaleY: 0, opacity: 0 },
+                              { y: -50, height: 0, opacity: 0 },
                               {
                                 y: 0,
-                                scaleY: 1,
+                                height: "auto",
                                 opacity: 1,
-                                duration: 0.3,
-                                ease: "power2.out",
-                                transformOrigin: "top",
-                                force3D: true,
+                                duration: 0.4,
+                                ease: "sine",
                                 onComplete: () => {
                                   gsap.to(spans, {
                                     opacity: 1,
                                     y: 0,
-                                    duration: 0.25,
-                                    stagger: 0.04,
-                                    ease: "power2.out",
-                                    force3D: true,
+                                    duration: 0.4,
+                                    stagger: 0.07,
+                                    ease: "sine",
                                   });
                                 },
                               },

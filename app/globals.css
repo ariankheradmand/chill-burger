@@ -81,23 +81,6 @@ body {
   will-change: transform, opacity;
 }
 
-/* Content Containment for 60FPS Low-End Scrolling */
-.item-card {
-  contain: layout paint;
-  content-visibility: auto;
-  contain-intrinsic-size: auto 60px;
-  transform: translateZ(0);
-  backface-visibility: hidden;
-}
-
-.item-card-with-img {
-  contain: layout paint;
-  content-visibility: auto;
-  contain-intrinsic-size: auto 240px;
-  transform: translateZ(0);
-  backface-visibility: hidden;
-}
-
 /* Smooth rendering */
 html {
   scroll-behavior: smooth;
